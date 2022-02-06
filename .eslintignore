@@ -1,0 +1,26 @@
+# npm
+**/node_modules/*
+package.json
+package-lock.json
+yarn.lock
+
+# typescript
+tsconfig.json
+
+# babel
+.babelrc.js
+
+# eslint
+.eslintrc.js
+.eslintignore
+
+# prettiier
+.prettierrc.js
+.prettieriignore
+
+# renovate
+renovate.json
+
+# next
+**/out/*
+**/.next/*
