@@ -1,3 +1,4 @@
+import { gql, useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 
 const YARETARA = {
@@ -9,6 +10,16 @@ const YARETARA = {
 };
 
 const Home: NextPage = () => {
+  const { data } = useQuery(gql`
+    query pokemonGetDaze {
+      pokemons(first: 10) {
+        name
+      }
+    }
+  `);
+
+  console.log(data);
+
   return <div style={YARETARA}>やれたらやる</div>;
 };
 
