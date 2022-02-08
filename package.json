@@ -6,6 +6,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:eslint": "eslint --cache .",
+    "lint:prettier": "prettier --check .",
+    "fix:eslint": "eslint . --fix",
+    "fix:prettier": "prettier --write .",
     "codegen": "graphql-codegen --config src/graphql/codegen.yml",
     "prepare": "husky install"
   },
@@ -41,6 +45,7 @@
     "eslint-plugin-simple-import-sort": "7.0.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.3.3",
+    "prettier": "^2.5.1",
     "typescript": "4.5.5"
   }
 }
