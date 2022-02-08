@@ -8,9 +8,13 @@
 
 ## コミットルール
 
-### ブランチ名
+### ブランチ
 
-- 以下の規則に従う
+- main（本番環境用）
+  - develop ブランチのみ、PullRequest & merge 可能
+- develop（開発環境用）
+  - main ブランチ以外、PullRequest & merge 可能
+- 命名規則は以下に従う
 
 `[feature, fix, refactor, doc, test]/zzz-zzzXzz`
 
