@@ -20,7 +20,12 @@ const Home: NextPage = () => {
 
   console.log(data);
 
-  return <div style={YARETARA}>やれたらやる</div>;
+  // eslint-disable-next-line react/jsx-handler-names
+  return (
+    <div style={YARETARA} onClick={() => console.log("aiko")}>
+      やれたらやる
+    </div>
+  );
 };
 
 // eslint-disable-next-line import/no-default-export

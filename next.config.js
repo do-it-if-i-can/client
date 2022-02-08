@@ -8,4 +8,4 @@ const nextConfig = {
   pageExtensions: ["page.tsx", "page.ts"],
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;

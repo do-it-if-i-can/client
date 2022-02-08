@@ -24,3 +24,4 @@ renovate.json
 # next
 **/out/*
 **/.next/*
+next.config.js
