@@ -1,4 +1,4 @@
-# できたらやる client repository
+# やれたらやる client repository
 
 ## 開発環境
 
@@ -8,7 +8,21 @@
 
 ## コミットルール
 
+### ブランチ名
+
+- 以下の規則に従う
+
+`[feature, fix, refactor, doc, test]/zzz-zzzXzz`
+
+例： feature/ui-button
+
+### コミットメッセージ
+
 - Gitmoji を使用する
+
+> https://marketplace.visualstudio.com/items?itemName=seatonjiang.gitmoji-vscode
+
+例： ✨ Button コンポーネント作成
 
 ## 命名規則
 
