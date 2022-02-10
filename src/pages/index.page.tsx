@@ -1,14 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 
-const YARETARA = {
-  display: "flex",
-  height: "100vh",
-  justifyContent: "center",
-  alignItems: "center",
-  fontSize: "150px",
-};
-
 const Home: NextPage = () => {
   const { data } = useQuery(gql`
     query pokemonGetDaze {
@@ -20,7 +12,11 @@ const Home: NextPage = () => {
 
   console.log(data);
 
-  return <div style={YARETARA}>やれたらやる</div>;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <h1 className="text-9xl font-bold">やれたらやる</h1>
+    </div>
+  );
 };
 
 // eslint-disable-next-line import/no-default-export
