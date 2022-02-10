@@ -1,7 +1,13 @@
 module.exports = {
   settings: { react: { version: "detect" } },
   env: { browser: true, es2021: true, node: true, jest: true },
-  extends: ["prettier", "eslint:recommended", "plugin:@typescript-eslint/recommended", "next/core-web-vitals"],
+  extends: [
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "next/core-web-vitals",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: { jsx: true },
@@ -19,6 +25,7 @@ module.exports = {
     // "promise",
     // "react-hooks",
     "simple-import-sort",
+    "tailwindcss",
   ],
   rules: {
     "linebreak-style": ["error", "unix"],
