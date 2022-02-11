@@ -1,26 +1,33 @@
 import { gql, useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 
-const YARETARA = {
-  display: "flex",
-  height: "100vh",
-  "justify-content": "center",
-  "align-items": "center",
-  "font-size": "150px",
-};
-
 const Home: NextPage = () => {
   const { data } = useQuery(gql`
     query pokemonGetDaze {
-      pokemons(first: 10) {
+      pokemon(name: "Pikachu") {
+        id
         name
+        evolutions {
+          name
+        }
+        attacks {
+          fast {
+            name
+            type
+            damage
+          }
+        }
       }
     }
   `);
 
   console.log(data);
 
-  return <div style={YARETARA}>やれたらやる</div>;
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <h1 className="text-9xl font-bold">やれたらやる</h1>
+    </div>
+  );
 };
 
 // eslint-disable-next-line import/no-default-export

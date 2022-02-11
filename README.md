@@ -1,4 +1,4 @@
-# やれたらやる client repository
+# やれたらやるチーム client repository
 
 ## 開発環境
 
