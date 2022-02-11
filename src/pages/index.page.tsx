@@ -4,8 +4,19 @@ import type { NextPage } from "next";
 const Home: NextPage = () => {
   const { data } = useQuery(gql`
     query pokemonGetDaze {
-      pokemons(first: 10) {
+      pokemon(name: "Pikachu") {
+        id
         name
+        evolutions {
+          name
+        }
+        attacks {
+          fast {
+            name
+            type
+            damage
+          }
+        }
       }
     }
   `);
