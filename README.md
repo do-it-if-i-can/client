@@ -1,14 +1,34 @@
 # やれたらやるチーム client repository
 
 ## 開発環境
+git clone
+```bash
+git clone -b develop https://github.com/do-it-if-i-can/client.git
+```
+
+パッケージのインストール
+```bash
+yarn
+```
+
+ローカル環境立ち上げ
+```bash
+yarn dev
+
+# npmの場合はこちら
+npm run dev
+```
 
 ## 技術選定
+- React(Next.js)
+- TypeScript
+- TailwindCSS(daisyUI)
+- ESLint
+- Prettier
 
 ## アーキテクチャ
 
-## コミットルール
-
-### ブランチ
+## ブランチルール
 
 - main（本番環境用）
   - develop ブランチのみ、PullRequest & merge 可能
@@ -20,7 +40,7 @@
 
 例： feature/ui-button
 
-### コミットメッセージ
+## コミットルール
 
 - Gitmoji を使用する
 
