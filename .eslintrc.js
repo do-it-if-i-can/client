@@ -1,5 +1,18 @@
 module.exports = {
-  settings: { react: { version: "detect" } },
+  settings: {
+    react: { version: "detect" },
+    tailwindcss: {
+      cssFiles: [
+        "src/**/*.css",
+        "node_modules/daisyui/dist/*.css",
+        "!**/.*",
+        "!**/build",
+        // "**/*.css",
+        // "!**/node_modules",
+        // "!**/dist",
+      ],
+    },
+  },
   env: { browser: true, es2021: true, node: true, jest: true },
   extends: [
     "prettier",
