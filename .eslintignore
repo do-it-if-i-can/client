@@ -24,3 +24,8 @@ renovate.json
 # next
 **/out/*
 **/.next/*
+next.config.js
+
+# tailwind
+tailwind.config.js
+postcss.config.js

@@ -1,10 +1,24 @@
 module.exports = {
-  settings: { react: { version: "detect" } },
+  settings: {
+    react: { version: "detect" },
+    tailwindcss: {
+      cssFiles: [
+        "src/**/*.css",
+        "node_modules/daisyui/dist/*.css",
+        "!**/.*",
+        "!**/build",
+        // "**/*.css",
+        // "!**/node_modules",
+        // "!**/dist",
+      ],
+    },
+  },
   env: { browser: true, es2021: true, node: true, jest: true },
   extends: [
     "prettier",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
     "next/core-web-vitals",
   ],
   parser: "@typescript-eslint/parser",
@@ -24,16 +38,14 @@ module.exports = {
     // "promise",
     // "react-hooks",
     "simple-import-sort",
+    "tailwindcss",
   ],
   rules: {
     "linebreak-style": ["error", "unix"],
     "comma-dangle": "off",
     "no-undef": "warn",
     "no-console": ["warn", { allow: ["warn", "info", "error"] }],
-    "no-restricted-syntax": [
-      "error",
-      { selector: "TSEnumDeclaration", message: "Don't declare enums" },
-    ],
+    "no-restricted-syntax": ["error", { selector: "TSEnumDeclaration", message: "Don't declare enums" }],
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "func-style": ["error", "expression"],
@@ -62,10 +74,7 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/consistent-type-imports": ["error", { prefer: "type-imports" }],
-    "@typescript-eslint/no-unused-vars": [
-      "error",
-      { varsIgnorePattern: "^_", argsIgnorePattern: "^_" },
-    ],
+    "@typescript-eslint/no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
     "jsx-a11y/no-autofocus": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",

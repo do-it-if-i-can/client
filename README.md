@@ -1,4 +1,4 @@
-# やれたらやる client repository
+# やれたらやるチーム client repository
 
 ## 開発環境
 
@@ -97,7 +97,6 @@
     - 🗂 zzzXzz
       - index.ts（zzzXzz 配下のファイルを export）
       - XXX_XXX.ts
-      - XXX_XXX.ts
     - XXX_XXX.ts
   - 🗂 pages
     - 🗂 zzz_zzz
@@ -111,7 +110,6 @@
   - 🗂 utils
     - 🗂 zzzXzz
       - index.ts（zzzXzz 配下のファイルを export）
-      - zzzXzz.ts
       - zzzXzz.ts
     - zzzXzz.ts
   - 🗂 stores
