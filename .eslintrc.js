@@ -14,13 +14,6 @@ module.exports = {
     },
   },
   env: { browser: true, es2021: true, node: true, jest: true },
-  extends: [
-    "prettier",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:tailwindcss/recommended",
-    "next/core-web-vitals",
-  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: { jsx: true },
@@ -28,6 +21,13 @@ module.exports = {
     sourceType: "module",
     project: "./tsconfig.json",
   },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended",
+    "next/core-web-vitals",
+    "prettier",
+  ],
   plugins: [
     // "react",
     // "@typescript-eslint",
