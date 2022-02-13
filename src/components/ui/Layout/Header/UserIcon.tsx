@@ -1,12 +1,12 @@
 import Image from "next/image";
-import type { FC } from "react";
+import type { VFC } from "react";
 
 type UserIconProps = {
   src?: string;
   alt?: string;
 };
 
-export const UserIcon: FC<UserIconProps> = (props) => {
+export const UserIcon: VFC<UserIconProps> = (props) => {
   const src = props.src || "/images/dummy-user-icon.png";
   const alt = props.alt || "ユーザーアイコン";
 
