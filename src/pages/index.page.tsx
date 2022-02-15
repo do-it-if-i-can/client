@@ -1,6 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 import type { NextPage } from "next";
 
+import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
+
 const Home: NextPage = () => {
   const { data } = useQuery(gql`
     query pokemonGetDaze {
@@ -24,9 +26,11 @@ const Home: NextPage = () => {
   console.log(data);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <h1 className="text-9xl font-bold">やれたらやる</h1>
-    </div>
+    <LayoutErrorBoundary>
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-9xl font-bold">やれたらやる</h1>
+      </div>
+    </LayoutErrorBoundary>
   );
 };
 
