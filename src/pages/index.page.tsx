@@ -1,11 +1,14 @@
 import type { NextPage } from "next";
 
+import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
 import { Layout } from "~/components/ui/Layout";
 
 const Home: NextPage = () => {
   return (
     <Layout>
-      <div></div>
+      <LayoutErrorBoundary>
+        <div></div>
+      </LayoutErrorBoundary>
     </Layout>
   );
 };
