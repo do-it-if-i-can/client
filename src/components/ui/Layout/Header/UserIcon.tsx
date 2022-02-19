@@ -1,6 +1,8 @@
 import Image from "next/image";
 import type { VFC } from "react";
 
+import { DummyUserIcon } from "~/components/ui/Assets/DummyUserIcon";
+
 type UserIconProps = {
   src?: string;
   alt?: string;
@@ -8,12 +10,9 @@ type UserIconProps = {
 };
 
 export const UserIcon: VFC<UserIconProps> = (props) => {
-  const src = props.src || "/images/dummy-user-icon.png";
-  const alt = props.alt || "ユーザーアイコン";
-
   return (
     <div className={props.className}>
-      <Image src={src} alt={alt} width={36} height={36} />
+      {props.src ? <Image src={props.src} alt={props.alt} width={36} height={36} /> : <DummyUserIcon />}
     </div>
   );
 };
