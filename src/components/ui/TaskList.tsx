@@ -1,25 +1,45 @@
 import type { VFC } from "react";
+import { useMemo } from "react";
 
 import { AddTaskButton } from "./AddTaskButton";
 
+const categoryTable: {
+  [category: string]: {
+    label: string;
+    color: string;
+  };
+} = {
+  today: {
+    color: "text-rose-500",
+    label: "今日する",
+  },
+  tomorrow: {
+    color: "text-orange-400",
+    label: "明日する",
+  },
+  ever: {
+    color: "text-amber-400",
+    label: "今度する",
+  },
+};
+
+export const categories = [...Object.keys(categoryTable)] as const;
+
 type TaskListProps = {
-  sectionTitle: "今日する" | "明日する" | "今度する";
+  category: typeof categories[number];
 };
 
 export const TaskList: VFC<TaskListProps> = (props) => {
-  const textColor = () => {
-    switch (props.sectionTitle) {
-      case "今日する":
-        return "text-rose-500";
-      case "明日する":
-        return "text-orange-400";
-      case "今度する":
-        return "text-amber-400";
-    }
-  };
+  const { categoryColor, categoryLabel } = useMemo(() => {
+    return {
+      categoryColor: categoryTable[props.category]["color"],
+      categoryLabel: categoryTable[props.category]["label"],
+    };
+  }, [props.category]);
+
   return (
     <div className="w-full">
-      <div className={["w-1/3 font-bold text-xl mb-6", textColor()].join(" ")}>{props.sectionTitle}</div>
+      <div className={["w-1/3 font-bold text-xl mb-6", categoryColor].join(" ")}>{categoryLabel}</div>
       <AddTaskButton />
     </div>
   );
