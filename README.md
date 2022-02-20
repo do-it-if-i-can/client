@@ -3,7 +3,8 @@
 ## 開発環境
 git clone
 ```bash
-git clone -b develop https://github.com/do-it-if-i-can/client.git
+# --recursiveオプションでsubmoduleの中身も取得する
+git clone -b develop --recursive https://github.com/do-it-if-i-can/client.git
 ```
 
 パッケージのインストール
@@ -17,6 +18,18 @@ yarn dev
 
 # npmの場合はこちら
 npm run dev
+```
+
+## submodule関係コマンド
+```bash
+# submoduleの更新（参照先mainブランチのHEADを参照する）
+git submodule update --remote
+
+# submoduleの反映（初回cloneでsubmoduleの中身がないときなど）
+git submodule update --init
+
+# submoduleの現在の参照先を確認（git fetch後に行なうと正確）
+git submodule status（`git submodule`コマンドでも同様）
 ```
 
 ## 技術選定
