@@ -38,8 +38,8 @@ export const TaskList: VFC<TaskListProps> = (props) => {
   }, [props.category]);
 
   return (
-    <div className="w-full">
-      <div className={["w-1/3 font-bold text-xl mb-6", categoryColor].join(" ")}>{categoryLabel}</div>
+    <div className="py-6 sm:px-4 md:w-[calc(100%_/_3)]">
+      <div className={["w-full font-bold text-xl mb-6", categoryColor].join(" ")}>{categoryLabel}</div>
       <AddTaskButton />
     </div>
   );

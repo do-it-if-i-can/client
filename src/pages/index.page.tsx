@@ -8,10 +8,12 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <LayoutErrorBoundary>
-        <div className="flex px-6 mx-auto sm:py-6 sm:px-48">
-          {categories.map((c) => {
-            return <TaskList key={c} category={c} />;
-          })}
+        <div className="px-6 md:px-20">
+          <div className="mx-auto max-w-screen-xl md:flex">
+            {categories.map((c) => {
+              return <TaskList key={c} category={c} />;
+            })}
+          </div>
         </div>
       </LayoutErrorBoundary>
     </Layout>
