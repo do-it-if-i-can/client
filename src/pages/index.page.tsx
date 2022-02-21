@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
-import { categories, TaskList } from "~/components/model/TaskList";
+import { TaskList } from "~/components/model/TaskList";
 import { Layout } from "~/components/ui/Layout";
 
 const Home: NextPage = () => {
@@ -10,9 +10,9 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex">
-            {categories.map((c) => {
-              return <TaskList key={c} category={c} />;
-            })}
+            <TaskList category={"today"} />
+            <TaskList category={"tomorrow"} />
+            <TaskList category={"ever"} />
           </div>
         </div>
       </LayoutErrorBoundary>
