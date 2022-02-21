@@ -1,6 +1,8 @@
 import type { VFC } from "react";
 import { useMemo } from "react";
 
+import type { Category } from "~/types/task";
+
 import { AddTaskButton } from "./AddTaskButton";
 
 const categoryTable: {
@@ -23,10 +25,8 @@ const categoryTable: {
   },
 };
 
-export const categories = [...Object.keys(categoryTable)] as const;
-
 type TaskListProps = {
-  category: typeof categories[number];
+  category: Category;
 };
 
 export const TaskList: VFC<TaskListProps> = (props) => {
