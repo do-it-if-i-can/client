@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import type { VFC } from "react";
 import { useMemo } from "react";
 
@@ -39,7 +40,7 @@ export const TaskList: VFC<TaskListProps> = (props) => {
 
   return (
     <div className="py-6 sm:px-4 md:w-[calc(100%_/_3)]">
-      <div className={["w-full font-bold text-xl mb-6", categoryColor].join(" ")}>{categoryLabel}</div>
+      <div className={clsx(["mb-6 w-full text-xl font-bold", categoryColor])}>{categoryLabel}</div>
       <AddTaskButton />
     </div>
   );
