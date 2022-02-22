@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
-import { TaskList } from "~/components/model/TaskList";
+import { TaskList } from "~/components/model/task/TaskList";
 import { Layout } from "~/components/ui/Layout";
 
 const Home: NextPage = () => {
