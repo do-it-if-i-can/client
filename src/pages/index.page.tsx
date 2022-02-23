@@ -4,15 +4,35 @@ import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
 import { TaskList } from "~/components/model/task/TaskList";
 import { Layout } from "~/components/ui/Layout";
 
+const categoryObj: {
+  [category: string]: {
+    label: string;
+    color: string;
+  };
+} = {
+  today: {
+    label: "今日する",
+    color: "text-rose-500",
+  },
+  tomorrow: {
+    label: "明日する",
+    color: "text-orange-400",
+  },
+  someday: {
+    label: "今度する",
+    color: "text-amber-400",
+  },
+};
+
 const Home: NextPage = () => {
   return (
     <Layout>
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex">
-            <TaskList category={"today"} />
-            <TaskList category={"tomorrow"} />
-            <TaskList category={"ever"} />
+            <TaskList categoryObj={categoryObj.today} />
+            <TaskList categoryObj={categoryObj.tomorrow} />
+            <TaskList categoryObj={categoryObj.someday} />
           </div>
         </div>
       </LayoutErrorBoundary>
