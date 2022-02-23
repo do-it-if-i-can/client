@@ -32,3 +32,6 @@ postcss.config.js
 
 # graphql(submodule)
 graphql
+
+# jest
+jest.config.js
