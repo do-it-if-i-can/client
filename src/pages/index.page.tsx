@@ -4,7 +4,7 @@ import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
 import { TaskList } from "~/components/model/task/TaskList";
 import { Layout } from "~/components/ui/Layout";
 
-const categoryObj: {
+const categories: {
   [category: string]: {
     label: string;
     color: string;
@@ -30,9 +30,9 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex">
-            <TaskList categoryObj={categoryObj.today} />
-            <TaskList categoryObj={categoryObj.tomorrow} />
-            <TaskList categoryObj={categoryObj.someday} />
+            <TaskList category={categories.today} />
+            <TaskList category={categories.tomorrow} />
+            <TaskList category={categories.someday} />
           </div>
         </div>
       </LayoutErrorBoundary>
