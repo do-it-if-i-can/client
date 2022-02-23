@@ -1,8 +1,7 @@
 import type { VFC } from "react";
 
+import { Avatar } from "~/components/model/user/Avatar";
 import { Logo } from "~/components/ui/Assets/Logo";
-
-import { Avatar } from "./Avatar";
 
 export const Header: VFC = () => {
   return (
