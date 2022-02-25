@@ -4,7 +4,7 @@ import { PlusIcon } from "~/components/ui/Assets/PlusIcon";
 
 export const AddTaskButton: VFC = () => {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center w-fit cursor-pointer">
       <PlusIcon />
       <span className="ml-2 text-gray-400">タスクを追加する</span>
     </div>

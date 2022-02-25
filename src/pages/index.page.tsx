@@ -29,7 +29,7 @@ const Home: NextPage = () => {
     <Layout>
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
-          <div className="mx-auto max-w-screen-xl md:flex">
+          <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
             <TaskList category={categories.today} />
             <TaskList category={categories.tomorrow} />
             <TaskList category={categories.someday} />
