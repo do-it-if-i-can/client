@@ -35,3 +35,4 @@ graphql
 
 # jest
 jest.config.js
+coverage-summary.json
