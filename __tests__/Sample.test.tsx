@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 
-import { SampleTest } from "~/components/SampleTest";
+import { Sample } from "~/components/Sample";
 
 describe("SampleTestコンポーネント", () => {
   it("祝!Jest開通!", () => {
-    const { getByText } = render(<SampleTest />);
+    const { getByText } = render(<Sample />);
 
     expect(getByText("Next×Jestの設定がとても簡単になった！")).toBeTruthy();
   });
