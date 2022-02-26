@@ -9,6 +9,9 @@ yarn.lock
 .next
 public
 
+# graphql(submodule)
+graphql
+
 # git, github
 # .github
 # .gitignore

@@ -29,3 +29,10 @@ next.config.js
 # tailwind
 tailwind.config.js
 postcss.config.js
+
+# graphql(submodule)
+graphql
+
+# jest
+jest.config.js
+coverage-summary.json
