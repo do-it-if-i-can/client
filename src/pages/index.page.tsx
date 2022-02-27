@@ -12,16 +12,58 @@ const categories: {
 } = {
   today: {
     label: "今日する",
-    color: "text-rose-500",
+    color: "rose-500",
   },
   tomorrow: {
     label: "明日する",
-    color: "text-orange-400",
+    color: "orange-400",
   },
   someday: {
     label: "今度する",
-    color: "text-amber-400",
+    color: "amber-400",
   },
+};
+
+const tasksData = [
+  {
+    id: 1,
+    category: "TODAY",
+    title: "Next.jsのセットアップ",
+    done: true,
+    priority: 2,
+  },
+  {
+    id: 2,
+    category: "TODAY",
+    title: "ESLintのインストール",
+    done: false,
+    priority: 1,
+  },
+  {
+    id: 3,
+    category: "TOMORROW",
+    title: "松本さんにメールを送る",
+    done: true,
+    priority: 2,
+  },
+  {
+    id: 4,
+    category: "TOMORROW",
+    title: "来週の飲み会の場所を決める",
+    done: false,
+    priority: 1,
+  },
+  {
+    id: 5,
+    category: "SOMEDAY",
+    title: "Prettierのインストール",
+    done: false,
+    priority: 1,
+  },
+];
+
+const categorizedTasks = (category: string) => {
+  return tasksData.filter((task) => task.category === category).sort((a, b) => b.priority - a.priority);
 };
 
 const Home: NextPage = () => {
@@ -30,9 +72,9 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
-            <TaskList category={categories.today} />
-            <TaskList category={categories.tomorrow} />
-            <TaskList category={categories.someday} />
+            <TaskList category={categories.today} tasks={categorizedTasks("TODAY")} />
+            <TaskList category={categories.tomorrow} tasks={categorizedTasks("TOMORROW")} />
+            <TaskList category={categories.someday} tasks={categorizedTasks("SOMEDAY")} />
           </div>
         </div>
       </LayoutErrorBoundary>
