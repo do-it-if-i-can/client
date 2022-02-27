@@ -5,6 +5,10 @@ import type { AppProps } from "next/app";
 
 import { client } from "~/utils/apollo/client";
 
+if (process.env.NODE_ENV === "development") {
+  require("src/mocks/main");
+}
+
 const MyApp = (props: AppProps) => {
   return (
     <ApolloProvider client={client}>
