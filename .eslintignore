@@ -36,3 +36,6 @@ graphql
 # jest
 jest.config.js
 coverage-summary.json
+
+# msw
+mockServiceWorker.js
