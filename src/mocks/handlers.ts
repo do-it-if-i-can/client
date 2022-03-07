@@ -1,7 +1,7 @@
 import { graphql } from "msw";
 
-import type { MutationCreateTodoArgs, QueryGetTodosByCategoryArgs, Todo } from "../../graphql/gql";
-import { Category } from "../../graphql/gql";
+import type { MutationCreateTodoArgs, QueryGetTodosByCategoryArgs, Todo } from "$/gql";
+import { Category } from "$/gql";
 
 export const handlers = [
   graphql.query<Record<"getTodosByCategory", Todo[]>, QueryGetTodosByCategoryArgs>(
