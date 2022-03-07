@@ -5,8 +5,8 @@ export const useAuth = () => {
   const { isLoading, isAuthenticated, user, getAccessTokenSilently, loginWithRedirect, logout } = useAuth0();
   const [token, setToken] = useState("");
 
-  const handleLogin = useCallback(() => {
-    loginWithRedirect();
+  const handleLogin = useCallback(async () => {
+    await loginWithRedirect();
   }, [loginWithRedirect]);
 
   const handleLogout = useCallback(() => {
@@ -15,13 +15,11 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // FIXME: ここの`scope`よくわかっておらず（要調査。read:user もあり？分かり次第環境変数に置き換える）
-      getAccessTokenSilently({ scope: "read:current_user" })
-        // FIXME: 現状トークンのペイロードが返ってこない問題発生中。要調査。
+      getAccessTokenSilently()
         .then((token) => setToken(token))
         .catch((e) => console.error(`${e}: トークンの取得に失敗しました`));
     }
-  }, [isAuthenticated, getAccessTokenSilently]);
+  }, [isAuthenticated, getAccessTokenSilently, setToken]);
 
   return { isLoading, isAuthenticated, user, token, handleLogin, handleLogout };
 };
