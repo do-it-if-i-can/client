@@ -7,9 +7,11 @@ export const handlers = [
   graphql.query<Record<"getTodosByCategory", Todo[]>, QueryGetTodosByCategoryArgs>(
     "getTodosByCategory",
     (req, res, ctx) => {
-      return res(
-        ctx.data({
-          getTodosByCategory: [
+      let todos: Todo[];
+
+      switch (req.variables.input.category) {
+        case Category.TODAY:
+          todos = [
             {
               category: Category.TODAY,
               createdAt: new Date(),
@@ -18,26 +20,6 @@ export const handlers = [
               id: 1,
               priority: 2,
               title: "じゃがいもを買う",
-              updatedAt: new Date(),
-              user: {
-                id: "1",
-                userName: "miyasan",
-                displayName: "みやさん",
-                todos: [],
-                createdAt: new Date(),
-                updatedAt: new Date(),
-                __typename: "User",
-              },
-              __typename: "Todo",
-            },
-            {
-              category: Category.TOMORROW,
-              createdAt: new Date(),
-              description: undefined,
-              done: false,
-              id: 2,
-              priority: 1,
-              title: "にんじんを買う",
               updatedAt: new Date(),
               user: {
                 id: "1",
@@ -70,13 +52,37 @@ export const handlers = [
               },
               __typename: "Todo",
             },
+          ];
+          break;
+        case Category.TOMORROW:
+          todos = [
+            {
+              category: Category.TOMORROW,
+              createdAt: new Date(),
+              description: undefined,
+              done: false,
+              id: 2,
+              priority: 2,
+              title: "にんじんを買う",
+              updatedAt: new Date(),
+              user: {
+                id: "1",
+                userName: "miyasan",
+                displayName: "みやさん",
+                todos: [],
+                createdAt: new Date(),
+                updatedAt: new Date(),
+                __typename: "User",
+              },
+              __typename: "Todo",
+            },
             {
               category: Category.TOMORROW,
               createdAt: new Date(),
               description: undefined,
               done: false,
               id: 4,
-              priority: 2,
+              priority: 1,
               title: "牛肉を買う",
               updatedAt: new Date(),
               user: {
@@ -90,6 +96,10 @@ export const handlers = [
               },
               __typename: "Todo",
             },
+          ];
+          break;
+        case Category.SOMEDAY:
+          todos = [
             {
               category: Category.SOMEDAY,
               createdAt: new Date(),
@@ -110,11 +120,18 @@ export const handlers = [
               },
               __typename: "Todo",
             },
-          ],
+          ];
+          break;
+      }
+
+      return res(
+        ctx.data({
+          getTodosByCategory: todos,
         }),
       );
     },
   ),
+
   graphql.mutation<Record<"createTodo", Todo>, MutationCreateTodoArgs>("createTodo", (req, res, ctx) => {
     return res(
       ctx.data({
