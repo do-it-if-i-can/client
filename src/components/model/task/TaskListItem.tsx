@@ -7,7 +7,6 @@ import { DeleteButton } from "~/components/ui/Button/DeleteButton";
 type TaskListItemProps = {
   task: {
     id: number;
-    category: string;
     title: string;
     done: boolean;
     priority: number;

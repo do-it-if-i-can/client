@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
 import { TaskList } from "~/components/model/task/TaskList";
 import { Layout } from "~/components/ui/Layout";
+import { Category, useGetTodosByUserQuery } from "$/gql";
 
 const categories: {
   [category: string]: {
@@ -24,57 +25,32 @@ const categories: {
   },
 };
 
-const tasksData = [
-  {
-    id: 1,
-    category: "TODAY",
-    title: "Next.jsのセットアップ",
-    done: true,
-    priority: 2,
-  },
-  {
-    id: 2,
-    category: "TODAY",
-    title: "ESLintのインストール",
-    done: false,
-    priority: 1,
-  },
-  {
-    id: 3,
-    category: "TOMORROW",
-    title: "松本さんにメールを送る",
-    done: true,
-    priority: 2,
-  },
-  {
-    id: 4,
-    category: "TOMORROW",
-    title: "来週の飲み会の場所を決める",
-    done: false,
-    priority: 1,
-  },
-  {
-    id: 5,
-    category: "SOMEDAY",
-    title: "Prettierのインストール",
-    done: false,
-    priority: 1,
-  },
-];
-
-const categorizedTasks = (category: string) => {
-  return tasksData.filter((task) => task.category === category).sort((a, b) => b.priority - a.priority);
-};
-
 const Home: NextPage = () => {
+  // FIXME: userIdをログイン中のユーザーのIDにする
+  const { data: data } = useGetTodosByUserQuery({
+    variables: {
+      input: {
+        userId: "1",
+      },
+    },
+  });
+
+  const categorizedTodos = (category: string) => {
+    if (!data) return [];
+
+    return data.getTodosByUser
+      .filter((todo) => todo?.category === category)
+      .sort((a, b) => (a && b ? b.priority - a.priority : 0));
+  };
+
   return (
     <Layout>
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
-            <TaskList category={categories.today} tasks={categorizedTasks("TODAY")} />
-            <TaskList category={categories.tomorrow} tasks={categorizedTasks("TOMORROW")} />
-            <TaskList category={categories.someday} tasks={categorizedTasks("SOMEDAY")} />
+            <TaskList category={categories.today} tasks={categorizedTodos(Category.TODAY)} />
+            <TaskList category={categories.tomorrow} tasks={categorizedTodos(Category.TOMORROW)} />
+            <TaskList category={categories.someday} tasks={categorizedTodos(Category.SOMEDAY)} />
           </div>
         </div>
       </LayoutErrorBoundary>
