@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
-import { TaskList } from "~/components/model/task/TaskList";
+import { TodoList } from "~/components/model/task/TodoList";
 import { Layout } from "~/components/ui/Layout";
 import { Category, useGetTodosByUserQuery } from "$/gql";
 
@@ -48,9 +48,9 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
-            <TaskList category={categories.today} tasks={categorizedTodos(Category.TODAY)} />
-            <TaskList category={categories.tomorrow} tasks={categorizedTodos(Category.TOMORROW)} />
-            <TaskList category={categories.someday} tasks={categorizedTodos(Category.SOMEDAY)} />
+            <TodoList category={categories.today} tasks={categorizedTodos(Category.TODAY)} />
+            <TodoList category={categories.tomorrow} tasks={categorizedTodos(Category.TOMORROW)} />
+            <TodoList category={categories.someday} tasks={categorizedTodos(Category.SOMEDAY)} />
           </div>
         </div>
       </LayoutErrorBoundary>

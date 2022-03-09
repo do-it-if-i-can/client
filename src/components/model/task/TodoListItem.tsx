@@ -4,7 +4,7 @@ import type { VFC } from "react";
 import { CopyButton } from "~/components/ui/Button/CopyButton";
 import { DeleteButton } from "~/components/ui/Button/DeleteButton";
 
-type TaskListItemProps = {
+type TodoListItemProps = {
   task: {
     id: number;
     title: string;
@@ -14,7 +14,7 @@ type TaskListItemProps = {
   categoryColor: string;
 };
 
-export const TaskListItem: VFC<TaskListItemProps> = (props) => {
+export const TodoListItem: VFC<TodoListItemProps> = (props) => {
   const checkedRadioBgStyle = `checked:bg-${props.categoryColor}`;
 
   const doneLabelStyle = () => {
