@@ -18,7 +18,7 @@ export const handlers = [
               description: undefined,
               done: true,
               id: 1,
-              priority: 2,
+              priority: 1,
               title: "じゃがいもを買う",
               updatedAt: new Date(),
               user: {
@@ -38,7 +38,7 @@ export const handlers = [
               description: undefined,
               done: false,
               id: 3,
-              priority: 1,
+              priority: 2,
               title: "たまねぎを買う",
               updatedAt: new Date(),
               user: {
