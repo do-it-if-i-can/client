@@ -3,7 +3,7 @@ import type { VFC } from "react";
 
 import type { GetTodosByUserQuery } from "$/gql";
 
-import { AddTaskButton } from "./AddTaskButton";
+import { AddTodoButton } from "./AddTodoButton";
 import { TodoListItem } from "./TodoListItem";
 
 type TodoListProps = {
@@ -23,7 +23,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
       {props.todos.map((todo) => {
         return todo && <TodoListItem key={todo.id} todo={todo} categoryColor={props.category.color} />;
       })}
-      <AddTaskButton />
+      <AddTodoButton />
     </div>
   );
 };

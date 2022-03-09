@@ -2,7 +2,7 @@ import type { VFC } from "react";
 
 import { PlusIcon } from "~/components/ui/Assets/PlusIcon";
 
-export const AddTaskButton: VFC = () => {
+export const AddTodoButton: VFC = () => {
   return (
     <div className="flex items-center w-fit cursor-pointer">
       <PlusIcon />
