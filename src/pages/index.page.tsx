@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
-import { TodoList } from "~/components/model/task/TodoList";
+import { TodoList } from "~/components/model/todo/TodoList";
 import { Layout } from "~/components/ui/Layout";
 import { Category, useGetTodosByUserQuery } from "$/gql";
 
