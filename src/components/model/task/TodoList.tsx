@@ -11,7 +11,7 @@ type TodoListProps = {
     label: string;
     color: string;
   };
-  tasks: GetTodosByUserQuery["getTodosByUser"];
+  todos: GetTodosByUserQuery["getTodosByUser"];
 };
 
 export const TodoList: VFC<TodoListProps> = (props) => {
@@ -20,8 +20,8 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   return (
     <div className="py-6 sm:px-4 md:w-[calc(90%_/_3)]">
       <div className={clsx(["mb-6 w-full text-xl font-bold", labelColorStyle])}>{props.category.label}</div>
-      {props.tasks.map((task) => {
-        return task && <TodoListItem key={task.id} task={task} categoryColor={props.category.color} />;
+      {props.todos.map((todo) => {
+        return todo && <TodoListItem key={todo.id} todo={todo} categoryColor={props.category.color} />;
       })}
       <AddTaskButton />
     </div>

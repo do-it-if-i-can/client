@@ -48,9 +48,9 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
           <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
-            <TodoList category={categories.today} tasks={categorizedTodos(Category.TODAY)} />
-            <TodoList category={categories.tomorrow} tasks={categorizedTodos(Category.TOMORROW)} />
-            <TodoList category={categories.someday} tasks={categorizedTodos(Category.SOMEDAY)} />
+            <TodoList category={categories.today} todos={categorizedTodos(Category.TODAY)} />
+            <TodoList category={categories.tomorrow} todos={categorizedTodos(Category.TOMORROW)} />
+            <TodoList category={categories.someday} todos={categorizedTodos(Category.SOMEDAY)} />
           </div>
         </div>
       </LayoutErrorBoundary>
