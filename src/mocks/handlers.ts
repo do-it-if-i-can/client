@@ -1,6 +1,6 @@
 import { graphql } from "msw";
 
-import type { MutationCreateTodoArgs, QueryGetTodosByCategoryArgs, Todo } from "$/gql";
+import type { MutationCreateTodoArgs, QueryGetTodosByCategoryArgs, QueryGetTodosByUserArgs, Todo } from "$/gql";
 import { Category } from "$/gql";
 
 export const handlers = [
@@ -131,6 +131,115 @@ export const handlers = [
       );
     },
   ),
+
+  graphql.query<Record<"getTodosByUser", Todo[]>, QueryGetTodosByUserArgs>("getTodosByUser", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        getTodosByUser: [
+          {
+            category: Category.TODAY,
+            createdAt: new Date(),
+            description: undefined,
+            done: true,
+            id: 1,
+            priority: 1,
+            title: "じゃがいもを買う",
+            updatedAt: new Date(),
+            user: {
+              id: "1",
+              userName: "miyasan",
+              displayName: "みやさん",
+              todos: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              __typename: "User",
+            },
+            __typename: "Todo",
+          },
+          {
+            category: Category.TODAY,
+            createdAt: new Date(),
+            description: undefined,
+            done: false,
+            id: 3,
+            priority: 2,
+            title: "たまねぎを買う",
+            updatedAt: new Date(),
+            user: {
+              id: "1",
+              userName: "miyasan",
+              displayName: "みやさん",
+              todos: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              __typename: "User",
+            },
+            __typename: "Todo",
+          },
+          {
+            category: Category.TOMORROW,
+            createdAt: new Date(),
+            description: undefined,
+            done: false,
+            id: 2,
+            priority: 2,
+            title: "にんじんを買う",
+            updatedAt: new Date(),
+            user: {
+              id: "1",
+              userName: "miyasan",
+              displayName: "みやさん",
+              todos: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              __typename: "User",
+            },
+            __typename: "Todo",
+          },
+          {
+            category: Category.TOMORROW,
+            createdAt: new Date(),
+            description: undefined,
+            done: false,
+            id: 4,
+            priority: 1,
+            title: "牛肉を買う",
+            updatedAt: new Date(),
+            user: {
+              id: "1",
+              userName: "miyasan",
+              displayName: "みやさん",
+              todos: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              __typename: "User",
+            },
+            __typename: "Todo",
+          },
+          {
+            category: Category.SOMEDAY,
+            createdAt: new Date(),
+            description: undefined,
+            done: true,
+            id: 5,
+            priority: 1,
+            title: "カレーのルーを買う",
+            updatedAt: new Date(),
+            user: {
+              id: "1",
+              userName: "miyasan",
+              displayName: "みやさん",
+              todos: [],
+              createdAt: new Date(),
+              updatedAt: new Date(),
+              __typename: "User",
+            },
+            __typename: "Todo",
+          },
+        ],
+      }),
+    );
+  }),
 
   graphql.mutation<Record<"createTodo", Todo>, MutationCreateTodoArgs>("createTodo", (req, res, ctx) => {
     return res(
