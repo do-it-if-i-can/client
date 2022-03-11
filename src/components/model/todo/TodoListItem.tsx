@@ -3,14 +3,10 @@ import type { VFC } from "react";
 
 import { CopyButton } from "~/components/ui/Button/CopyButton";
 import { DeleteButton } from "~/components/ui/Button/DeleteButton";
+import type { Todo } from "$/gql";
 
 type TodoListItemProps = {
-  todo: {
-    id: number;
-    title: string;
-    done: boolean;
-    priority: number;
-  };
+  todo: Pick<Todo, "id" | "title" | "done" | "priority">;
   categoryColor: string;
 };
 
