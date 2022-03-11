@@ -18,7 +18,7 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
   };
 
   return (
-    <div className="group flex items-center mb-4 cursor-pointer">
+    <div className="group flex items-center cursor-pointer">
       <input
         type="radio"
         id={`radio-${props.todo.id}`}

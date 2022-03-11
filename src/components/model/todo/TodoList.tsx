@@ -20,10 +20,12 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   return (
     <div className="py-6 sm:px-4 md:w-[calc(90%_/_3)]">
       <div className={clsx(["mb-6 w-full text-xl font-bold", labelColorStyle])}>{props.category.label}</div>
-      {props.todos.map((todo) => {
-        return todo && <TodoListItem key={todo.id} todo={todo} categoryColor={props.category.color} />;
-      })}
-      <AddTodoButton />
+      <div className="flex flex-col space-y-4">
+        {props.todos.map((todo) => {
+          return todo && <TodoListItem key={todo.id} todo={todo} categoryColor={props.category.color} />;
+        })}
+        <AddTodoButton />
+      </div>
     </div>
   );
 };
