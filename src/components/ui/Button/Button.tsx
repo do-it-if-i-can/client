@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { memo } from "react";
 import { forwardRef } from "react";
 
 type ButtonProps = {
@@ -8,11 +9,13 @@ type ButtonProps = {
 
 type ButtonType = ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps;
 
-export const Button = forwardRef<HTMLButtonElement, ButtonType>((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <button type="button" ref={ref} {...rest} className={className}>
-      {children}
-    </button>
-  );
-});
+export const Button = memo(
+  forwardRef<HTMLButtonElement, ButtonType>((props, ref) => {
+    const { children, className, ...rest } = props;
+    return (
+      <button type="button" ref={ref} {...rest} className={className}>
+        {children}
+      </button>
+    );
+  }),
+);
