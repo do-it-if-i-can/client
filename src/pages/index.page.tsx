@@ -27,7 +27,7 @@ const categories: {
 
 const Home: NextPage = () => {
   // FIXME: userIdをログイン中のユーザーのIDにする
-  const { data: data } = useGetTodosByUserQuery({
+  const { data } = useGetTodosByUserQuery({
     variables: {
       input: {
         userId: "1",
