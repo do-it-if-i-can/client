@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
-import { TaskList } from "~/components/model/task/TaskList";
+import { TodoList } from "~/components/model/todo/TodoList";
 import { Layout } from "~/components/ui/Layout";
+import { Category, useGetTodosByUserQuery } from "$/gql";
 
 const categories: {
   [category: string]: {
@@ -12,27 +13,44 @@ const categories: {
 } = {
   today: {
     label: "今日する",
-    color: "text-rose-500",
+    color: "rose-500",
   },
   tomorrow: {
     label: "明日する",
-    color: "text-orange-400",
+    color: "orange-400",
   },
   someday: {
     label: "今度する",
-    color: "text-amber-400",
+    color: "amber-400",
   },
 };
 
 const Home: NextPage = () => {
+  // FIXME: userIdをログイン中のユーザーのIDにする
+  const { data } = useGetTodosByUserQuery({
+    variables: {
+      input: {
+        userId: "1",
+      },
+    },
+  });
+
+  const categorizedTodos = (category: string) => {
+    if (!data) return [];
+
+    return data.getTodosByUser
+      .filter((todo) => todo?.category === category)
+      .sort((a, b) => (a && b ? b.priority - a.priority : 0));
+  };
+
   return (
     <Layout>
       <LayoutErrorBoundary>
         <div className="px-6 md:px-20">
-          <div className="mx-auto max-w-screen-xl md:flex">
-            <TaskList category={categories.today} />
-            <TaskList category={categories.tomorrow} />
-            <TaskList category={categories.someday} />
+          <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
+            <TodoList category={categories.today} todos={categorizedTodos(Category.TODAY)} />
+            <TodoList category={categories.tomorrow} todos={categorizedTodos(Category.TOMORROW)} />
+            <TodoList category={categories.someday} todos={categorizedTodos(Category.SOMEDAY)} />
           </div>
         </div>
       </LayoutErrorBoundary>
