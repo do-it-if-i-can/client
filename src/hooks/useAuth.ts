@@ -1,6 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect, useState } from "react";
 
+import { APP_BASE_URL } from "~/constants/app";
 import { AUTH0_AUDIENCE, AUTH0_SCOPE } from "~/constants/auth";
 
 export const useAuth = () => {
@@ -12,7 +13,7 @@ export const useAuth = () => {
   }, [loginWithRedirect]);
 
   const handleLogout = useCallback(() => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: `${APP_BASE_URL}/auth/signin` });
   }, [logout]);
 
   useEffect(() => {
