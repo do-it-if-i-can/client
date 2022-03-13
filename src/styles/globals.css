@@ -1,3 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-md {
+  font-size: 14px;
+  font-style: 400;
+  line-height: 18px;
+}
+
+.btn {
+  @apply border-none rounded-full normal-case min-h-0;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0px;
+}
+
+.radio {
+  @apply h-6 w-6 border-2 border-base-300 checked:border-base-300 hover:border-base-300;
+}
+
+.textarea-primary {
+  @apply p-3 w-full leading-5 rounded-xl outline-none focus:ring-1 focus:drop-shadow focus:drop-shadow-[0px_0px_2px_rgba(244,63,94,0.5)]  resize-none bg-base-200 ring-primary placeholder:text-base-300 caret-primary;
+}
+
+/* tertiary */
+.bg-tertiary {
+  @apply bg-accent;
+}
+.btn-tertiary {
+  @apply btn bg-accent hover:bg-accent-focus;
+}
+.text-tertiary {
+  @apply text-accent;
+}
+.radio-tertiary {
+  @apply radio radio-accent;
+}
+
+/* info */
+.btn-info {
+  @apply btn bg-info hover:bg-[#3371d4] text-white outline-info;
+}
+
+/* error */
+.btn-error {
+  @apply btn bg-error hover:bg-[#d03b3b] text-white outline-error;
+}
+
+/* [data-theme="dark"] .btn {
+  border-radius: 0px;
+} */
