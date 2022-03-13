@@ -10,29 +10,36 @@ type TodoListItemProps = {
   categoryColor: string;
 };
 
-export const TodoListItem: VFC<TodoListItemProps> = (props) => {
-  const checkedRadioBgStyle = `checked:bg-${props.categoryColor}`;
+const checkedRadioBgTheme = (categoryColor: string) => {
+  return `radio-${categoryColor}`;
+};
 
-  const doneLabelStyle = () => {
-    return props.todo.done ? "text-gray-400 line-through" : "";
-  };
+const doneLabelStyle = (done: boolean) => {
+  return done ? "text-base-300 line-through" : "";
+};
+
+export const TodoListItem: VFC<TodoListItemProps> = (props) => {
+  const radioColor = checkedRadioBgTheme(props.categoryColor);
+  const labelColor = doneLabelStyle(props.todo.done);
 
   return (
-    <div className="group flex items-center cursor-pointer">
-      <input
-        type="radio"
-        id={`radio-${props.todo.id}`}
-        className={clsx(["border-2 radio", checkedRadioBgStyle])}
-        defaultChecked={props.todo.done}
-      />
-      <div className="flex justify-between w-full">
-        <label htmlFor={`radio-${props.todo.id}`} className={clsx(["ml-2 cursor-pointer", doneLabelStyle()])}>
-          {props.todo.title}
-        </label>
-        <div className="hidden group-hover:flex">
-          <CopyButton className="mr-3" />
-          <DeleteButton />
-        </div>
+    <div className="group flex gap-2 items-start w-full cursor-pointer">
+      <div className="flex-wrap">
+        <input
+          type="radio"
+          id={`radio-${props.todo.id}`}
+          className={clsx(["radio", radioColor])}
+          defaultChecked={props.todo.done}
+        />
+      </div>
+
+      <label htmlFor={`radio-${props.todo.id}`} className={clsx(["flex-1", labelColor])}>
+        {props.todo.title}
+      </label>
+
+      <div className="flex flex-wrap opacity-0 group-hover:opacity-100">
+        <CopyButton className="mr-1 md:mr-2 lg:mr-3" />
+        <DeleteButton />
       </div>
     </div>
   );

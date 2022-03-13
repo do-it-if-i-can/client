@@ -14,15 +14,15 @@ const categories: {
 } = {
   today: {
     label: "今日する",
-    color: "rose-500",
+    color: "primary",
   },
   tomorrow: {
     label: "明日する",
-    color: "orange-400",
+    color: "secondary",
   },
   someday: {
     label: "今度する",
-    color: "amber-400",
+    color: "accent",
   },
 };
 
@@ -47,8 +47,8 @@ const Home: NextPage = () => {
   return (
     <Layout>
       <LayoutErrorBoundary>
-        <div className="px-6 md:px-20">
-          <div className="mx-auto max-w-screen-xl md:flex md:justify-between">
+        <div className="px-6 md:px-10 xl:px-24">
+          <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
             <TodoList category={categories.today} todos={categorizedTodos(Category.TODAY)} />
             <TodoList category={categories.tomorrow} todos={categorizedTodos(Category.TOMORROW)} />
             <TodoList category={categories.someday} todos={categorizedTodos(Category.SOMEDAY)} />
