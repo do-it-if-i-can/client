@@ -33,7 +33,10 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
         />
       </div>
 
-      <label htmlFor={`radio-${props.todo.id}`} className={clsx(["flex-1", labelColor])}>
+      <label
+        htmlFor={`radio-${props.todo.id}`}
+        className={clsx(["flex-1 break-words line-clamp-4 md:line-clamp-none", labelColor])}
+      >
         {props.todo.title}
       </label>
 
