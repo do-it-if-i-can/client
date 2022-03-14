@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { memo } from "react";
 import { RecoilRoot } from "recoil";
 
-import { WithTheme } from "~/components/functional/Theme/WithTheme";
+import { WithTheme } from "~/components/functional/WithTheme";
 import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTH0_REDIRECT_URI } from "~/constants/auth";
 import { client } from "~/utils/apollo/client";
 
