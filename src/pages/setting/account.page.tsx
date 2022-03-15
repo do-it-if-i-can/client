@@ -16,6 +16,7 @@ const LogoutButton = () => {
     </button>
   );
 };
+
 const AccountDeleteButton = () => {
   const handleAccountDelete = () => alert("アカウントを削除しました");
   return (
@@ -24,6 +25,7 @@ const AccountDeleteButton = () => {
     </button>
   );
 };
+
 const GoogleLinkButton = () => {
   const handleGoogleConnect = () => alert("Google連携しました");
   return (
@@ -32,6 +34,7 @@ const GoogleLinkButton = () => {
     </button>
   );
 };
+
 const AppleLinkButton = () => {
   const handleAppleConnect = () => alert("Apple連携しました");
   return (
@@ -41,7 +44,7 @@ const AppleLinkButton = () => {
   );
 };
 
-const SETTING_NAVIGATION_DATA: SectionListDataType = [
+const SECTION_LIST_DATA: SectionListDataType = [
   {
     id: "account",
     sectionLabel: "アカウントの連携",
@@ -85,7 +88,7 @@ const AccountPage: NextPage = () => {
     <Layout centerTitle="アカウント">
       <LayoutErrorBoundary>
         <SettingPageLayout>
-          <SectionList data={SETTING_NAVIGATION_DATA} />
+          <SectionList data={SECTION_LIST_DATA} />
         </SettingPageLayout>
       </LayoutErrorBoundary>
     </Layout>

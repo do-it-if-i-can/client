@@ -16,14 +16,14 @@ const SettingPageLayout: FC<{ children: ReactNode }> = ({ children }) => {
 const ThemePage: NextPage = () => {
   const { resolvedTheme, setTheme } = useTheme();
 
-  const SETTING_NAVIGATION_DATA: SectionListDataType = [
+  const SECTION_LIST_DATA: SectionListDataType = [
     {
       id: "theme",
       list: [
         {
           id: "os",
           type: "button",
-          onClick: useCallback(() => setTheme("light"), []),
+          onClick: useCallback(() => setTheme(""), []),
           leftLabel: "OSの設定に合わせる",
         },
         {
@@ -46,7 +46,7 @@ const ThemePage: NextPage = () => {
     <Layout centerTitle="テーマ">
       <LayoutErrorBoundary>
         <SettingPageLayout>
-          <SectionList resolvedTheme={resolvedTheme} data={SETTING_NAVIGATION_DATA} />
+          <SectionList resolvedTheme={resolvedTheme} data={SECTION_LIST_DATA} />
         </SettingPageLayout>
       </LayoutErrorBoundary>
     </Layout>

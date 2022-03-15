@@ -9,7 +9,7 @@ import { Layout } from "~/components/ui/Layout/Layout";
 import type { SectionListDataType } from "~/components/ui/Layout/SectionList/SectionList";
 import { SectionList } from "~/components/ui/Layout/SectionList/SectionList";
 
-const SETTING_NAVIGATION_DATA: SectionListDataType = [
+const SECTION_LIST_DATA: SectionListDataType = [
   {
     id: "profile",
     sectionLabel: "プロフィール",
@@ -77,7 +77,7 @@ const SettingPage: NextPage = () => {
     <Layout centerTitle="設定">
       <LayoutErrorBoundary>
         <SettingPageLayout>
-          <SectionList resolvedTheme={resolvedTheme} data={SETTING_NAVIGATION_DATA} />
+          <SectionList resolvedTheme={resolvedTheme} data={SECTION_LIST_DATA} />
         </SettingPageLayout>
       </LayoutErrorBoundary>
     </Layout>
