@@ -43,7 +43,7 @@ const ThemePage: NextPage = () => {
   ];
 
   return (
-    <Layout>
+    <Layout centerTitle="テーマ">
       <LayoutErrorBoundary>
         <SettingPageLayout>
           <SectionList resolvedTheme={resolvedTheme} data={SETTING_NAVIGATION_DATA} />

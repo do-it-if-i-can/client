@@ -82,7 +82,7 @@ const SettingPageLayout: FC<{ children: ReactNode }> = ({ children }) => {
 
 const AccountPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout centerTitle="アカウント">
       <LayoutErrorBoundary>
         <SettingPageLayout>
           <SectionList data={SETTING_NAVIGATION_DATA} />
