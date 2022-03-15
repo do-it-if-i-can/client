@@ -2,7 +2,7 @@ import type { VFC } from "react";
 
 import { SectionListItem } from "./SectionListItem";
 
-type ThemeKey = "light" | "dark";
+type ThemeKey = "os" | "light" | "dark";
 
 type Common = {
   id: string;
@@ -15,19 +15,19 @@ type Common = {
 type Link = {
   type: "link";
   href: string;
-  onClick?: undefined;
+  onClick?: never;
 };
 
 type Button = {
   type: "button";
   onClick: () => void;
-  href?: undefined;
+  href?: never;
 };
 
 type Div = {
-  type?: undefined;
-  href?: undefined;
-  onClick?: undefined;
+  type?: never;
+  href?: never;
+  onClick?: never;
 };
 
 export type SectionListDataType = {
@@ -52,12 +52,12 @@ const currentThemeCheck = (resolvedTheme?: ThemeKey) => {
   }
 };
 
-export const SectionList: VFC<Props> = ({ data, resolvedTheme }) => {
-  const currentTheme = currentThemeCheck(resolvedTheme);
+export const SectionList: VFC<Props> = (props) => {
+  const currentTheme = currentThemeCheck(props.resolvedTheme);
 
   return (
     <>
-      {data.map((section) => (
+      {props.data.map((section) => (
         <div key={section.id} className="mb-4">
           {section.sectionLabel && (
             <h2 className="py-4 px-6 text-sm font-bold md:py-2 md:px-4 text-base-300">{section.sectionLabel}</h2>

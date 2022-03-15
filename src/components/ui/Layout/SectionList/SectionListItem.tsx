@@ -14,26 +14,26 @@ const sectionListStyle = "flex justify-between items-center h-14 px-6 w-full tex
 const sectionListHoverStyle = "hover:bg-base-200";
 
 export const SectionListItem = forwardRef<HTMLButtonElement | HTMLDivElement, Props>(
-  ({ type = "div", href, children, handleClick }, ref) => {
-    if (href) {
+  ({ type = "div", ...props }, ref) => {
+    if (props.href) {
       return (
-        <Link href={href}>
-          <a className={clsx([sectionListStyle, sectionListHoverStyle])}>{children}</a>
+        <Link href={props.href}>
+          <a className={clsx([sectionListStyle, sectionListHoverStyle])}>{props.children}</a>
         </Link>
       );
     }
 
     if (type === "button") {
       return (
-        <button {...ref} className={clsx([sectionListStyle, sectionListHoverStyle])} onClick={handleClick}>
-          {children}
+        <button {...ref} className={clsx([sectionListStyle, sectionListHoverStyle])} onClick={props.handleClick}>
+          {props.children}
         </button>
       );
     }
 
     return (
       <div {...ref} className={sectionListStyle}>
-        {children}
+        {props.children}
       </div>
     );
   },
