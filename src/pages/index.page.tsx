@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 
-import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
+import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
 import { TodoList } from "~/components/model/todo";
 import { Layout } from "~/components/ui/Layout";
