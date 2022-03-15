@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import type { VFC } from "react";
 
-import { CopyButton } from "~/components/ui/Button";
-import { DeleteButton } from "~/components/ui/Button";
+import { CopyButton, DeleteButton } from "~/components/ui/Button";
 import type { Todo } from "$/gql";
 
 type TodoListItemProps = {
