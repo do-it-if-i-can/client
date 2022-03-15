@@ -1,14 +1,22 @@
 import type { NextPage } from "next";
-import type { FC, ReactNode } from "react";
+import { useTheme } from "next-themes";
+import type { VFC } from "react";
 
 import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
-import { ChevronLeftIcon } from "~/components/ui/Assets/HeroIcon";
+import { AppleIcon } from "~/components/ui/Assets/AppleIcon";
+import { GoogleIcon } from "~/components/ui/Assets/GoogleIcon";
 import { Layout } from "~/components/ui/Layout/Layout";
-import type { SectionListDataType } from "~/components/ui/Layout/SectionList/SectionList";
-import { SectionList } from "~/components/ui/Layout/SectionList/SectionList";
+import type { SectionListDataType } from "~/components/ui/Layout/SectionList";
+import { SectionList } from "~/components/ui/Layout/SectionList";
 
-const LogoutButton = () => {
+const ThemingAppleIcon: VFC = () => {
+  const { resolvedTheme } = useTheme();
+  const color = ["os", "light"].includes(resolvedTheme) ? "#fff" : "#000";
+  return <AppleIcon fill={color} />;
+};
+
+const LogoutButton: VFC = () => {
   const handleLogout = () => alert("ログアウトしました");
   return (
     <button className="font-bold text-error" onClick={handleLogout}>
@@ -17,7 +25,7 @@ const LogoutButton = () => {
   );
 };
 
-const AccountDeleteButton = () => {
+const AccountDeleteButton: VFC = () => {
   const handleAccountDelete = () => alert("アカウントを削除しました");
   return (
     <button className="font-bold text-error" onClick={handleAccountDelete}>
@@ -26,7 +34,7 @@ const AccountDeleteButton = () => {
   );
 };
 
-const GoogleLinkButton = () => {
+const GoogleLinkButton: VFC = () => {
   const handleGoogleConnect = () => alert("Google連携しました");
   return (
     <button className="w-24 btn btn-sm" onClick={handleGoogleConnect}>
@@ -35,7 +43,7 @@ const GoogleLinkButton = () => {
   );
 };
 
-const AppleLinkButton = () => {
+const AppleLinkButton: VFC = () => {
   const handleAppleConnect = () => alert("Apple連携しました");
   return (
     <button className="w-24 btn btn-info btn-sm" onClick={handleAppleConnect}>
@@ -52,13 +60,13 @@ const SECTION_LIST_DATA: SectionListDataType = [
       {
         id: "google",
         leftLabel: "Google",
-        leftComponent: <ChevronLeftIcon />,
+        leftComponent: <GoogleIcon />,
         rightComponent: <GoogleLinkButton />,
       },
       {
         id: "apple",
-        leftLabel: "apple",
-        leftComponent: <ChevronLeftIcon />,
+        leftLabel: "Apple",
+        leftComponent: <ThemingAppleIcon />,
         rightComponent: <AppleLinkButton />,
       },
     ],
@@ -79,17 +87,11 @@ const SECTION_LIST_DATA: SectionListDataType = [
   },
 ];
 
-const SettingPageLayout: FC<{ children: ReactNode }> = ({ children }) => {
-  return <div className="pt-4 mx-auto max-w-screen-sm h-screen md:max-w-screen-sm">{children}</div>;
-};
-
 const AccountPage: NextPage = () => {
   return (
-    <Layout centerTitle="アカウント">
+    <Layout centerTitle="アカウント" layout="setting">
       <LayoutErrorBoundary>
-        <SettingPageLayout>
-          <SectionList data={SECTION_LIST_DATA} />
-        </SettingPageLayout>
+        <SectionList data={SECTION_LIST_DATA} />
       </LayoutErrorBoundary>
     </Layout>
   );
