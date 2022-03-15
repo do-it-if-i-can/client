@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
 import { TodoList } from "~/components/model/todo";
-import { Layout } from "~/components/ui/Layout";
+import { Layout } from "~/components/ui/Layout/Layout";
 import { Category, useGetTodosByUserQuery } from "$/gql";
 
 const categories: {

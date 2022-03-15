@@ -1,6 +1,6 @@
 import type { ReactNode, VFC } from "react";
 
-import { Header } from "./Header/Header";
+import { Header } from "./Header";
 
 type LayoutProps = { children: ReactNode };
 
