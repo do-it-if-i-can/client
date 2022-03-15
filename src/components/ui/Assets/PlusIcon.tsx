@@ -1,20 +1,21 @@
+import clsx from "clsx";
 import type { ComponentPropsWithoutRef } from "react";
 import type { VFC } from "react";
 
 type PlusIconProps = ComponentPropsWithoutRef<"svg">;
 
-export const PlusIcon: VFC<PlusIconProps> = (props) => {
+export const PlusIcon: VFC<PlusIconProps> = ({ className, ...otherProps }) => {
   return (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <title>プラスのアイコン</title>
-      <circle cx="12" cy="12" r="11" fill="#C2C6D2" stroke="#C2C6D2" strokeWidth="2" />
-      <path
-        d="M12 12H6.5M12 6.5V12V6.5ZM12 12V17.5V12ZM12 12H17.5H12Z"
-        stroke="white"
-        strokeWidth="1.83333"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={clsx(["w-6 h-6 text-base-content group-hover:text-primary", className])}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={2}
+      {...otherProps}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
     </svg>
   );
 };
