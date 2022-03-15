@@ -11,7 +11,6 @@ import { UserCircleIcon as UserCircle } from "@heroicons/react/solid";
 import { PlusCircleIcon as PlusCircle } from "@heroicons/react/solid";
 import clsx from "clsx";
 import type { ComponentProps, VFC } from "react";
-import React from "react";
 
 const defaultStyle = "w-6 h-6 text-base-content group-hover:text-primary";
 
