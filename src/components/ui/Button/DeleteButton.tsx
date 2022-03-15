@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 
-import { DeleteIcon } from "~/components/ui/Assets/DeleteIcon";
+import { TrashIcon } from "~/components/ui/Assets/HeroIcon";
 
 type DeleteButtonProps = {
   className?: string;
@@ -9,7 +9,7 @@ type DeleteButtonProps = {
 export const DeleteButton: VFC<DeleteButtonProps> = (props) => {
   return (
     <div className={props.className}>
-      <DeleteIcon />
+      <TrashIcon />
     </div>
   );
 };
