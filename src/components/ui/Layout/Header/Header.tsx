@@ -12,7 +12,7 @@ export type HeaderProps = {
   centerTitle?: string;
 };
 
-export const Header: VFC<HeaderProps> = ({ centerTitle }) => {
+export const Header: VFC<HeaderProps> = (props) => {
   const isSettingPage = useIsPage("/setting");
 
   return (
@@ -20,10 +20,10 @@ export const Header: VFC<HeaderProps> = ({ centerTitle }) => {
       <div
         className={clsx([
           "flex relative justify-center items-center mx-auto h-20 md:max-w-screen-lg lg:max-w-screen-xl",
-          centerTitle ? "" : "md:justify-between",
+          props.centerTitle ? "" : "md:justify-between",
         ])}
       >
-        {centerTitle ? (
+        {props.centerTitle ? (
           <div className="absolute left-0">
             <IconButton href={isSettingPage ? "/" : "/setting"}>
               {isSettingPage ? <CloseIcon /> : <ChevronLeftIcon />}
@@ -31,9 +31,9 @@ export const Header: VFC<HeaderProps> = ({ centerTitle }) => {
           </div>
         ) : null}
 
-        {centerTitle ? <h1 className="text-lg font-bold text-base-content">{centerTitle}</h1> : <Logo />}
+        {props.centerTitle ? <h1 className="text-lg font-bold text-base-content">{props.centerTitle}</h1> : <Logo />}
 
-        {!centerTitle ? <Avatar className="absolute right-0" /> : null}
+        {!props.centerTitle ? <Avatar className="absolute right-0" /> : null}
       </div>
     </header>
   );

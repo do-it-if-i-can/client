@@ -7,7 +7,8 @@ type LayoutProps = HeaderProps & {
   children: ReactNode;
 };
 
-export const Layout: VFC<LayoutProps> = ({ children, ...otherProps }) => {
+export const Layout: VFC<LayoutProps> = (props) => {
+  const { children, ...otherProps } = props;
   return (
     <div>
       <Header {...otherProps} />

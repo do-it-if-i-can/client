@@ -6,10 +6,10 @@ type Props = {
   href: string;
 };
 
-export const IconButton: VFC<Props> = ({ href, children }) => {
+export const IconButton: VFC<Props> = (props) => {
   return (
-    <Link href={href}>
-      <a className="group inline-block p-2 rounded-full outline-primary hover:bg-base-200">{children}</a>
+    <Link href={props.href}>
+      <a className="group inline-block p-2 rounded-full hover:bg-base-200">{props.children}</a>
     </Link>
   );
 };
