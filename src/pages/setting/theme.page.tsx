@@ -2,11 +2,10 @@ import type { NextPage } from "next";
 import { useTheme } from "next-themes";
 import type { FC, ReactNode } from "react";
 import { useCallback } from "react";
-import React from "react";
 
-import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
+import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
-import { Layout } from "~/components/ui/Layout";
+import { Layout } from "~/components/ui/Layout/Layout";
 import type { SectionListDataType } from "~/components/ui/Layout/SectionList/SectionList";
 import { SectionList } from "~/components/ui/Layout/SectionList/SectionList";
 

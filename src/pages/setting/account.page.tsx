@@ -1,27 +1,12 @@
 import type { NextPage } from "next";
 import type { FC, ReactNode } from "react";
-import React from "react";
 
-import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
+import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
-import { Layout } from "~/components/ui/Layout";
+import { ChevronLeftIcon } from "~/components/ui/Assets/HeroIcon";
+import { Layout } from "~/components/ui/Layout/Layout";
 import type { SectionListDataType } from "~/components/ui/Layout/SectionList/SectionList";
 import { SectionList } from "~/components/ui/Layout/SectionList/SectionList";
-
-export const ChevronLeftIcon = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-6 h-6 text-base-300 group-hover:text-primary"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={2}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
-  );
-};
 
 const LogoutButton = () => {
   const handleLogout = () => alert("ログアウトしました");

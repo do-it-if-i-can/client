@@ -3,8 +3,7 @@ import type { VFC } from "react";
 
 import type { GetTodosByUserQuery } from "$/gql";
 
-import { AddTodoButton } from "./AddTodoButton";
-import { TodoListItem } from "./TodoListItem";
+import { AddTodoButton, TodoListItem } from ".";
 
 type TodoListProps = {
   category: {

@@ -1,14 +1,18 @@
 import type { ReactNode, VFC } from "react";
 
-import { Header } from "./Header/Header";
+import type { HeaderProps } from "./Header";
+import { Header } from "./Header";
 
-type LayoutProps = { children: ReactNode };
+type LayoutProps = HeaderProps & {
+  children: ReactNode;
+};
 
 export const Layout: VFC<LayoutProps> = (props) => {
+  const { children, ...otherProps } = props;
   return (
     <div>
-      <Header />
-      <main>{props.children}</main>
+      <Header {...otherProps} />
+      <main>{children}</main>
     </div>
   );
 };
