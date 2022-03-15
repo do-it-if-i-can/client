@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 
-import { CopyIcon } from "~/components/ui/Assets/CopyIcon";
+import { CopyIcon } from "~/components/ui/Assets/icons";
 
 type CopyButtonProps = {
   className?: string;
