@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply outline-primary;
+}
+
+ul {
+  @apply list-none;
+}
+
 .btn-md {
   font-size: 14px;
   font-style: 400;
@@ -13,6 +21,10 @@
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0px;
+}
+
+.btn-sm {
+  @apply h-10;
 }
 
 .radio {
@@ -39,12 +51,12 @@
 
 /* info */
 .btn-info {
-  @apply btn bg-info hover:bg-[#3371d4] text-white outline-info;
+  @apply bg-info hover:bg-[#3371d4] text-white outline-info;
 }
 
 /* error */
 .btn-error {
-  @apply btn bg-error hover:bg-[#d03b3b] text-white outline-error;
+  @apply bg-error hover:bg-[#d03b3b] text-white outline-error;
 }
 
 /* [data-theme="dark"] .btn {
