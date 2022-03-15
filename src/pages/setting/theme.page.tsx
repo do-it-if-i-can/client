@@ -7,7 +7,7 @@ import { Layout } from "~/components/ui/Layout";
 
 const AccountPage: NextPage = () => {
   return (
-    <Layout title="テーマ">
+    <Layout centerTitle="テーマ">
       <LayoutErrorBoundary>
         <div>
           <h1>テーマ設定画面</h1>

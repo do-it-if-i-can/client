@@ -7,7 +7,7 @@ import { Layout } from "~/components/ui/Layout";
 
 const SettingPage: NextPage = () => {
   return (
-    <Layout title="設定">
+    <Layout centerTitle="設定">
       <LayoutErrorBoundary>
         <div>
           <h1>設定画面</h1>
