@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 
-import { DeleteIcon } from "~/components/ui/Assets/DeleteIcon";
+import { DeleteIcon } from "~/components/ui/Assets/icons";
 
 type DeleteButtonProps = {
   className?: string;

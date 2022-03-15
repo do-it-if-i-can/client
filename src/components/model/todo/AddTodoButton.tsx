@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 
-import { PlusIcon } from "~/components/ui/Assets/PlusIcon";
+import { PlusIcon } from "~/components/ui/Assets/icons";
 
 export const AddTodoButton: VFC = () => {
   return (
