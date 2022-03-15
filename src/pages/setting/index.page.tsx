@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 
-import { LayoutErrorBoundary } from "~/components/functional/ErrorBoundary";
+import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
 import { WithAuth } from "~/components/functional/WithAuth";
-import { Layout } from "~/components/ui/Layout";
+import { Layout } from "~/components/ui/Layout/Layout";
 
 const SettingPage: NextPage = () => {
   return (

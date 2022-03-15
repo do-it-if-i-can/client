@@ -1,18 +1,22 @@
 # やれたらやるチーム client repository
 
 ## 開発環境
+
 git clone
+
 ```bash
 # --recursiveオプションでsubmoduleの中身も取得する
 git clone -b develop --recursive https://github.com/do-it-if-i-can/client.git
 ```
 
 パッケージのインストール
+
 ```bash
 yarn
 ```
 
 ローカル環境立ち上げ
+
 ```bash
 yarn dev
 
@@ -20,7 +24,8 @@ yarn dev
 npm run dev
 ```
 
-## submodule関係コマンド
+## submodule 関係コマンド
+
 ```bash
 # submoduleの更新（参照先mainブランチのHEADを参照する）
 git submodule update --remote
@@ -33,6 +38,7 @@ git submodule status（`git submodule`コマンドでも同様）
 ```
 
 ## 技術選定
+
 - React(Next.js)
 - TypeScript
 - TailwindCSS(daisyUI)
@@ -88,6 +94,8 @@ git submodule status（`git submodule`コマンドでも同様）
 
 - src フォルダの直下は、複数形フォルダ名を定義する
 - src フォルダの二階層下以降は、単数形フォルダ名を定義する
+- コンポーネント単体を格納するフォルダは作らない
+- components フォルダの二階層下以降に複数のコンポーネントが格納されている場合、index.ts を作成しエントリーポイントを設ける
 
 > 参考記事 https://zenn.dev/yoshiko/articles/99f8047555f700
 
@@ -98,22 +106,22 @@ git submodule status（`git submodule`コマンドでも同様）
         - index.ts
         - XzzXzz.tsx
         - XzzXzz.page.tsx
-        - XzzXzz.stories.tsx
         - useXzzXzz.hook.ts
       - 🗂 User
     - 🗂 model
       - 🗂 Xzz
-        - 🗂 Xzz
-          - index.ts
-          - Xzz.tsx
-          - Xzz.stories.ts
-      - 🗂 User
-    - 🗂 ui
-      - 🗂 XzzXzz
         - index.ts
-        - XzzXzz.tsx
-        - Xzz.stories.tsx
+        - Xzz.tsx
+        - Zzz.tsx
+      - 🗂 User
+        - Xxx.tsx
+    - 🗂 ui
+      - XzzXzz.tsx
+      - XzzZzz.tsx
       - 🗂 Button
+        - index.ts
+        - XxxButton.tsx
+        - ZzzButton.tsx
       - 🗂 Layout
     - 🗂 functional
       - 🗂 Xzz
