@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { VFC } from "react";
 
-import { DummyAvatar } from "~/components/ui/Assets/DummyAvatar";
+import { UserCircleIcon } from "~/components/ui/Assets/HeroIcon";
 
 type AvatarProps = {
   src?: string;
@@ -12,7 +12,7 @@ type AvatarProps = {
 export const Avatar: VFC<AvatarProps> = (props) => {
   return (
     <div className={props.className}>
-      {props.src ? <Image src={props.src} alt={props.alt} width={36} height={36} /> : <DummyAvatar />}
+      {props.src ? <Image src={props.src} alt={props.alt} width={36} height={36} /> : <UserCircleIcon />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import type { VFC } from "react";
 
-import { CopyIcon } from "~/components/ui/Assets/icons";
+import { DuplicateIcon } from "~/components/ui/Assets/HeroIcon";
 
 type CopyButtonProps = {
   className?: string;
@@ -9,7 +9,7 @@ type CopyButtonProps = {
 export const CopyButton: VFC<CopyButtonProps> = (props) => {
   return (
     <div className={props.className}>
-      <CopyIcon />
+      <DuplicateIcon />
     </div>
   );
 };
