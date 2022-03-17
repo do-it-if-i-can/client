@@ -1,11 +1,11 @@
 import clsx from "clsx";
 import type { VFC } from "react";
 
-import { Avatar } from "~/components/model/user/Avatar";
 import { ChevronLeftIcon } from "~/components/ui/Assets/HeroIcon";
 import { CloseIcon } from "~/components/ui/Assets/HeroIcon";
 import { Logo } from "~/components/ui/Assets/Logo";
 import { IconButton } from "~/components/ui/Button/IconButton";
+import { AvatarMenu } from "~/components/ui/Menu/AvatarMenu";
 import { useIsPage } from "~/hooks/useIsPage";
 
 export type HeaderProps = {
@@ -33,7 +33,11 @@ export const Header: VFC<HeaderProps> = (props) => {
 
         {props.centerTitle ? <h1 className="text-lg font-bold text-base-content">{props.centerTitle}</h1> : <Logo />}
 
-        {!props.centerTitle ? <Avatar className="absolute right-0" /> : null}
+        {!props.centerTitle ? (
+          <div className="absolute right-0">
+            <AvatarMenu />
+          </div>
+        ) : null}
       </div>
     </header>
   );
