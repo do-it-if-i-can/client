@@ -1,5 +1,4 @@
 import type { ComponentPropsWithoutRef, VFC } from "react";
-import React from "react";
 
 type LogoProps = ComponentPropsWithoutRef<"svg">;
 
