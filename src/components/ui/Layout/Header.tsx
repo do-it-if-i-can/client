@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import type { VFC } from "react";
 
-import { Avatar } from "~/components/model/user/Avatar";
 import { ChevronLeftIcon } from "~/components/ui/Assets/HeroIcon";
 import { CloseIcon } from "~/components/ui/Assets/HeroIcon";
 import { Logo } from "~/components/ui/Assets/Logo";
@@ -36,9 +35,7 @@ export const Header: VFC<HeaderProps> = (props) => {
 
         {!props.centerTitle ? (
           <div className="absolute right-0">
-            <AvatarMenu>
-              <Avatar />
-            </AvatarMenu>
+            <AvatarMenu />
           </div>
         ) : null}
       </div>

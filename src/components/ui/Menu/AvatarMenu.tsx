@@ -1,15 +1,12 @@
 import { Popover, Transition } from "@headlessui/react";
 import Link from "next/link";
-import type { ReactNode, VFC } from "react";
+import type { VFC } from "react";
 import { Fragment } from "react";
 
+import { Avatar } from "~/components/model/user/Avatar";
 import { CogIcon, LogoutIcon } from "~/components/ui/Assets/HeroIcon";
 
-type Props = {
-  children: ReactNode;
-};
-
-export const AvatarMenu: VFC<Props> = (props) => {
+export const AvatarMenu: VFC = () => {
   const handleLogout = () => {
     alert("ログアウトしました");
   };
@@ -18,7 +15,9 @@ export const AvatarMenu: VFC<Props> = (props) => {
     <Popover className="relative">
       {({ open: _ }) => (
         <>
-          <Popover.Button className="rounded-full outline-primary">{props.children}</Popover.Button>
+          <Popover.Button className="rounded-full outline-primary">
+            <Avatar />
+          </Popover.Button>
 
           <Transition
             as={Fragment}
