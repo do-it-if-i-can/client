@@ -9,6 +9,7 @@ import { XIcon as X } from "@heroicons/react/outline";
 import { TrashIcon as Trash } from "@heroicons/react/outline";
 import { UserCircleIcon as UserCircle } from "@heroicons/react/solid";
 import { PlusCircleIcon as PlusCircle } from "@heroicons/react/solid";
+import { CheckIcon as Check } from "@heroicons/react/solid";
 import clsx from "clsx";
 import type { ComponentProps, VFC } from "react";
 
@@ -58,4 +59,8 @@ export const PlusCircleIcon: VFC<Props> = ({ className, ...otherProps }) => {
 
 export const TrashIcon: VFC<Props> = ({ className, ...otherProps }) => {
   return <Trash className={clsx([defaultStyle, className])} {...otherProps} />;
+};
+
+export const CheckIcon: VFC<Props> = ({ className, ...otherProps }) => {
+  return <Check className={clsx([defaultStyle, className])} {...otherProps} />;
 };

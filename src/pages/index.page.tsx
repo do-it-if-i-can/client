@@ -45,14 +45,12 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout layout="main">
       <LayoutErrorBoundary>
-        <div className="px-6 md:px-10 xl:px-24">
-          <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
-            <TodoList category={categories.today} todos={categorizedTodos(Category.TODAY)} />
-            <TodoList category={categories.tomorrow} todos={categorizedTodos(Category.TOMORROW)} />
-            <TodoList category={categories.someday} todos={categorizedTodos(Category.SOMEDAY)} />
-          </div>
+        <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
+          <TodoList category={categories.today} todos={categorizedTodos(Category.TODAY)} />
+          <TodoList category={categories.tomorrow} todos={categorizedTodos(Category.TOMORROW)} />
+          <TodoList category={categories.someday} todos={categorizedTodos(Category.SOMEDAY)} />
         </div>
       </LayoutErrorBoundary>
     </Layout>
