@@ -41,16 +41,16 @@ const SECTION_LIST_DATA: SectionListDataType = [
     sectionLabel: "サポート",
     list: [
       {
-        id: "privacy_policy",
+        id: "privacy",
         type: "link",
-        href: "/setting/privacy_policy",
+        href: "/setting/privacy",
         leftLabel: "プライバシーポリシー",
         rightComponent: <ChevronRightIcon className="text-base-300" />,
       },
       {
-        id: "terms_of_use",
+        id: "terms",
         type: "link",
-        href: "/setting/terms_of_use",
+        href: "/setting/terms",
         leftLabel: "利用規約",
         rightComponent: <ChevronRightIcon className="text-base-300" />,
       },
