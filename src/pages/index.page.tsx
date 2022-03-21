@@ -79,26 +79,24 @@ const Home: NextPage = () => {
   const useCategorizedTodoList = (category: Category) => useRecoilValue(categorizedTodoListState(category));
 
   return (
-    <Layout>
+    <Layout layout="main">
       <LayoutErrorBoundary>
-        <div className="px-6 md:px-10 xl:px-24">
-          <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
-            <TodoList
-              category={categories.today}
-              todoList={useCategorizedTodoList(Category.TODAY)}
-              onDoneChange={handleDoneChange}
-            />
-            <TodoList
-              category={categories.tomorrow}
-              todoList={useCategorizedTodoList(Category.TOMORROW)}
-              onDoneChange={handleDoneChange}
-            />
-            <TodoList
-              category={categories.someday}
-              todoList={useCategorizedTodoList(Category.SOMEDAY)}
-              onDoneChange={handleDoneChange}
-            />
-          </div>
+        <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
+          <TodoList
+            category={categories.today}
+            todoList={useCategorizedTodoList(Category.TODAY)}
+            onDoneChange={handleDoneChange}
+          />
+          <TodoList
+            category={categories.tomorrow}
+            todoList={useCategorizedTodoList(Category.TOMORROW)}
+            onDoneChange={handleDoneChange}
+          />
+          <TodoList
+            category={categories.someday}
+            todoList={useCategorizedTodoList(Category.SOMEDAY)}
+            onDoneChange={handleDoneChange}
+          />
         </div>
       </LayoutErrorBoundary>
     </Layout>
