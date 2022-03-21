@@ -1,6 +1,12 @@
 import { graphql } from "msw";
 
-import type { MutationCreateTodoArgs, QueryGetTodosByCategoryArgs, QueryGetTodosByUserArgs, Todo } from "$/gql";
+import type {
+  MutationCreateTodoArgs,
+  MutationUpdateTodoDoneArgs,
+  QueryGetTodosByCategoryArgs,
+  QueryGetTodosByUserArgs,
+  Todo,
+} from "$/gql";
 import { Category } from "$/gql";
 
 export const handlers = [
@@ -262,6 +268,14 @@ export const handlers = [
             updatedAt: new Date(),
           },
         },
+      }),
+    );
+  }),
+
+  graphql.mutation<Record<"updateTodoDone", boolean>, MutationUpdateTodoDoneArgs>("updateTodoDone", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        updateTodoDone: true,
       }),
     );
   }),
