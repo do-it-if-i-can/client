@@ -2,11 +2,14 @@ import clsx from "clsx";
 import type { VFC } from "react";
 
 import { CopyButton, DeleteButton } from "~/components/ui/Button";
-import type { Todo } from "$/gql";
+import type { Todo as GqlTodo } from "$/gql";
+
+export type Todo = Pick<GqlTodo, "id" | "category" | "title" | "done" | "priority">;
 
 type TodoListItemProps = {
-  todo: Pick<Todo, "id" | "title" | "done" | "priority">;
+  todo: Todo;
   categoryColor: string;
+  onDoneChange: (todo: Todo) => void;
 };
 
 const checkedRadioBgTheme = (categoryColor: string) => {
@@ -28,7 +31,8 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
           type="radio"
           id={`radio-${props.todo.id}`}
           className={clsx(["radio", radioColor])}
-          defaultChecked={props.todo.done}
+          checked={props.todo.done}
+          onClick={() => props.onDoneChange(props.todo)}
         />
       </div>
 
