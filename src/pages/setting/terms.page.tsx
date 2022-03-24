@@ -8,10 +8,10 @@ const TermsPage: NextPage = () => {
   return (
     <Layout centerTitle="利用規約" layout="setting">
       <LayoutErrorBoundary>
-        <div className="px-4 pb-20 prose prose-blue dark:prose-invert md:px-0">
+        <div className="px-4 pb-20 prose md:px-0 dark:prose-invert">
           <p>
             本規約は、合同会社Qin（以下「弊社」とします）が提供するブログサービス『Qin
-            Memo』（以下「本サービス」とします）について、その利用者との間に適用されるものです。
+            Todo』（以下「本サービス」とします）について、その利用者との間に適用されるものです。
           </p>
 
           <h4>第１条 利用登録等</h4>
@@ -110,7 +110,7 @@ const TermsPage: NextPage = () => {
             </li>
             <li>
               その他、本サービスのプライバシーに対する考え方の詳細については、
-              <a target="_blank" rel="noopener noreferrer" href="/setting/memo/privacy">
+              <a target="_blank" rel="noopener noreferrer" href="/setting/privacy">
                 プライバシーポリシー
               </a>
               を参照してください。

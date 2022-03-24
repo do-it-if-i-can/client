@@ -8,7 +8,7 @@ const PrivacyPage: NextPage = () => {
   return (
     <Layout centerTitle="プライバシーポリシー" layout="setting">
       <LayoutErrorBoundary>
-        <div className="px-4 pb-20 prose prose-blue dark:prose-invert md:px-0">
+        <div className="px-4 pb-20 prose md:px-0 dark:prose-invert">
           <p>
             合同会社Qin（以下「弊社」とします）は、個人情報が人格尊重の理念の下に慎重に取扱われるべきものであることに鑑み、個人情報を保護することが弊社の事業活動の基本であり、社会的責務であると認識し、以下の方針に基づき個人情報の保護に努めます。
           </p>
