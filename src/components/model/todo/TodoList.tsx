@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import type { VFC } from "react";
 
+import type { Todo } from "~/components/model/todo/TodoListItem";
 import type { GetTodosByUserQuery } from "$/gql";
 
 import { AddTodoButton, TodoListItem } from ".";
@@ -10,7 +11,8 @@ type TodoListProps = {
     label: string;
     color: string;
   };
-  todos: GetTodosByUserQuery["getTodosByUser"];
+  todoList: GetTodosByUserQuery["getTodosByUser"];
+  onDoneChange: (todo: Todo) => void;
 };
 
 const checkedTextTheme = (categoryColor: string) => {
@@ -25,8 +27,17 @@ export const TodoList: VFC<TodoListProps> = (props) => {
       </div>
 
       <div className="flex flex-col space-y-4">
-        {props.todos.map((todo) => {
-          return todo && <TodoListItem key={todo.id} todo={todo} categoryColor={props.category.color} />;
+        {props.todoList.map((todo) => {
+          return (
+            todo && (
+              <TodoListItem
+                key={todo.id}
+                todo={todo}
+                categoryColor={props.category.color}
+                onDoneChange={props.onDoneChange}
+              />
+            )
+          );
         })}
         <AddTodoButton />
       </div>
