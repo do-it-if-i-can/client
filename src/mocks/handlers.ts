@@ -1,7 +1,9 @@
 import { graphql } from "msw";
 
 import type {
+  MutationCopyTodoArgs,
   MutationCreateTodoArgs,
+  MutationDeleteTodoArgs,
   MutationUpdateTodoDoneArgs,
   QueryGetTodosByCategoryArgs,
   QueryGetTodosByUserArgs,
@@ -276,6 +278,22 @@ export const handlers = [
     return res(
       ctx.data({
         updateTodoDone: true,
+      }),
+    );
+  }),
+
+  graphql.mutation<Record<"copyTodo", boolean>, MutationCopyTodoArgs>("copyTodo", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        copyTodo: true,
+      }),
+    );
+  }),
+
+  graphql.mutation<Record<"deleteTodo", boolean>, MutationDeleteTodoArgs>("deleteTodo", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        deleteTodo: true,
       }),
     );
   }),
