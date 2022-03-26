@@ -9,7 +9,7 @@ type CopyButtonProps = {
 export const CopyButton: VFC<CopyButtonProps> = (props) => {
   return (
     <div className={props.className}>
-      <DuplicateIcon />
+      <DuplicateIcon className="group-hover:text-base-300" />
     </div>
   );
 };

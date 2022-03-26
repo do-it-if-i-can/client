@@ -9,7 +9,7 @@ type DeleteButtonProps = {
 export const DeleteButton: VFC<DeleteButtonProps> = (props) => {
   return (
     <div className={props.className}>
-      <TrashIcon />
+      <TrashIcon className="group-hover:text-base-300" />
     </div>
   );
 };
