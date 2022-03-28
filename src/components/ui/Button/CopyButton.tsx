@@ -27,8 +27,8 @@ export const CopyButton: VFC<CopyButtonProps> = ({ className, todo }) => {
       });
       if (data && data.copyTodo) {
         // FIXME: refetch()に置き換える
-        const todoIds = todoList.filter((t) => t).map((t) => t && t.id);
-        const latestId = Math.max(...(todoIds as number[]));
+        const todoIds = todoList.filter((t) => t).map((t) => t && t.id) as number[];
+        const latestId = Math.max(...todoIds);
         const newTodo = {
           ...todo,
           id: latestId + 1,
