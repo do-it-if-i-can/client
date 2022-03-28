@@ -16,7 +16,7 @@ export const CopyButton: VFC<CopyButtonProps> = ({ className, todo }) => {
   const [copyTodo] = useCopyTodoMutation();
   const [todoList, setTodoList] = useRecoilState<TodoListState>(todoListState);
 
-  const handleClick = async () => {
+  const handleCopyTodo = async () => {
     try {
       const { data } = await copyTodo({
         variables: {
@@ -41,17 +41,16 @@ export const CopyButton: VFC<CopyButtonProps> = ({ className, todo }) => {
           }
           return t;
         });
-        newTodoList.push(newTodo);
 
-        setTodoList(newTodoList);
+        setTodoList([...newTodoList, newTodo]);
       }
     } catch (e) {
       console.error(`${e}: Todoの複製に失敗しました`);
     }
   };
   return (
-    <div className={className} onClick={handleClick}>
+    <button className={className} onClick={handleCopyTodo}>
       <DuplicateIcon className="group-hover:text-base-300" />
-    </div>
+    </button>
   );
 };
