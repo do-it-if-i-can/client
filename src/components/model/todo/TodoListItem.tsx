@@ -36,9 +36,9 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
         {props.todo.title}
       </label>
 
-      <div className="flex flex-wrap opacity-0 group-hover:opacity-100">
-        <CopyButton className="mr-1 md:mr-2 lg:mr-3" />
-        <DeleteButton />
+      <div className="flex flex-wrap gap-1 opacity-0 group-hover:opacity-100 md:gap-2 lg:gap-3">
+        <CopyButton todo={props.todo} />
+        <DeleteButton todoId={props.todo.id} />
       </div>
     </div>
   );
