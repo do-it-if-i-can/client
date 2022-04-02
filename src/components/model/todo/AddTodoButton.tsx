@@ -1,12 +1,18 @@
+import clsx from "clsx";
 import type { VFC } from "react";
 
 import { PlusCircleIcon } from "~/components/ui/Assets/HeroIcon";
 
-export const AddTodoButton: VFC = () => {
+type AddTodoButtonProps = {
+  className?: string;
+  onClick: () => void;
+};
+
+export const AddTodoButton: VFC<AddTodoButtonProps> = (props) => {
   return (
-    <div className="flex items-center w-fit cursor-pointer">
+    <button className={clsx(["flex items-center w-fit cursor-pointer", props.className])} onClick={props.onClick}>
       <PlusCircleIcon />
       <span className="ml-2 text-gray-400">タスクを追加する</span>
-    </div>
+    </button>
   );
 };

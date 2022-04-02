@@ -1,10 +1,12 @@
 import clsx from "clsx";
 import type { VFC } from "react";
+import { useRef, useState } from "react";
 
 import type { Todo } from "~/components/model/todo/TodoListItem";
 import type { GetTodosByUserQuery } from "$/gql";
 
 import { AddTodoButton, TodoListItem } from ".";
+import { TodoInput } from "./TodoInput";
 
 type TodoListProps = {
   category: {
@@ -20,6 +22,18 @@ const checkedTextTheme = (categoryColor: string) => {
 };
 
 export const TodoList: VFC<TodoListProps> = (props) => {
+  const todoInputRef = useRef<HTMLInputElement>(null);
+  const [todoInputDisplayState, setTodoInputDisplayState] = useState(false);
+
+  const handleClickAddTodoButton = async () => {
+    await setTodoInputDisplayState(true);
+    todoInputRef.current && todoInputRef.current.focus();
+  };
+
+  const handleBlurTodoInput = () => {
+    setTodoInputDisplayState(false);
+  };
+
   return (
     <div className="py-6 md:flex-1 md:px-2">
       <div className={clsx(["mb-6 w-full text-xl font-bold", checkedTextTheme(props.category.color)])}>
@@ -39,7 +53,13 @@ export const TodoList: VFC<TodoListProps> = (props) => {
             )
           );
         })}
-        <AddTodoButton />
+        <AddTodoButton onClick={handleClickAddTodoButton} className={todoInputDisplayState ? "hidden" : ""} />
+        <TodoInput
+          ref={todoInputRef}
+          onBlur={handleBlurTodoInput}
+          categoryColor={props.category.color}
+          className={todoInputDisplayState ? "" : "hidden"}
+        />
       </div>
     </div>
   );
