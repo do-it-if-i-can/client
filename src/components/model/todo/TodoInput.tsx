@@ -8,7 +8,6 @@ type TodoInputProps = {
   onBlur: () => void;
   onChange: () => void;
   onEnterKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
-  className?: string;
 };
 
 type TodoInput = ForwardRefExoticComponent<TodoInputProps & RefAttributes<HTMLInputElement>>;
@@ -25,7 +24,7 @@ export const TodoInput: TodoInput = forwardRef((props, ref) => {
   const caretColor = caretTheme(props.categoryColor);
 
   return (
-    <div className={clsx(["group flex gap-2 items-start w-full cursor-pointer", props.className])}>
+    <div className="group flex gap-2 items-start w-full cursor-pointer">
       <div className="flex-wrap">
         <input type="radio" className={clsx(["radio", radioColor])} readOnly />
       </div>

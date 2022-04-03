@@ -118,16 +118,18 @@ export const TodoList: VFC<TodoListProps> = (props) => {
             )
           );
         })}
-        <AddTodoButton onClick={handleClickAddTodoButton} className={inputDisplayState ? "hidden" : ""} />
-        <TodoInput
-          ref={inputRef}
-          value={inputValueState}
-          onBlur={handleInputBlur}
-          onChange={handleInputValueChange}
-          onEnterKeyPress={handleInputEnterKeyPress}
-          categoryColor={props.categoryObject.color}
-          className={inputDisplayState ? "" : "hidden"}
-        />
+        {inputDisplayState ? (
+          <TodoInput
+            ref={inputRef}
+            value={inputValueState}
+            onBlur={handleInputBlur}
+            onChange={handleInputValueChange}
+            onEnterKeyPress={handleInputEnterKeyPress}
+            categoryColor={props.categoryObject.color}
+          />
+        ) : (
+          <AddTodoButton onClick={handleClickAddTodoButton} />
+        )}
       </div>
     </div>
   );
