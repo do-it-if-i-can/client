@@ -27,7 +27,7 @@ const checkedTextTheme = (categoryColor: string) => {
 };
 
 export const TodoList: VFC<TodoListProps> = (props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputDisplayState, setInputDisplayState] = useState(false);
   const [inputValueState, setInputValueState] = useState("");
 
@@ -93,7 +93,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
     setInputValueState("");
   };
 
-  const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key !== "Enter") return;
     await createTodoAndSetTodoList();
     setInputValueState("");

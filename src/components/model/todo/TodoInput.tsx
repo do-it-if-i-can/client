@@ -7,7 +7,7 @@ type TodoInputProps = {
   value: string;
   onBlur: () => void;
   onChange: () => void;
-  onEnterKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onEnterKeyPress: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
 };
 
 const checkedRadioBgTheme = (categoryColor: string) => {
@@ -17,7 +17,7 @@ const caretTheme = (categoryColor: string) => {
   return `caret-${categoryColor}`;
 };
 
-export const TodoInput = forwardRef<HTMLInputElement, TodoInputProps>((props, ref) => {
+export const TodoInput = forwardRef<HTMLTextAreaElement, TodoInputProps>((props, ref) => {
   const radioColor = checkedRadioBgTheme(props.categoryColor);
   const caretColor = caretTheme(props.categoryColor);
 
@@ -27,14 +27,14 @@ export const TodoInput = forwardRef<HTMLInputElement, TodoInputProps>((props, re
         <input type="radio" className={clsx(["radio", radioColor])} readOnly />
       </div>
 
-      <input
+      <textarea
         ref={ref}
-        type="text"
         value={props.value}
+        rows={1}
         onBlur={props.onBlur}
         onChange={props.onChange}
         onKeyPress={props.onEnterKeyPress}
-        className={clsx(["p-0 w-full h-6 text-base input input-ghost", caretColor])}
+        className={clsx(["p-0 w-full h-6 text-base bg-transparent outline-none resize-none", caretColor])}
       />
     </div>
   );
