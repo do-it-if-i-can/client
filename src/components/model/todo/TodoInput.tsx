@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { ForwardRefExoticComponent, RefAttributes } from "react";
+import type { ForwardRefExoticComponent, KeyboardEvent, RefAttributes } from "react";
 import { forwardRef } from "react";
 
 import type { Todo as GqlTodo } from "$/gql";
@@ -11,6 +11,7 @@ type TodoInputProps = {
   value: string;
   onBlur: () => void;
   onChange: () => void;
+  onEnterKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
   className?: string;
 };
 
@@ -39,6 +40,7 @@ export const TodoInput: TodoInput = forwardRef((props, ref) => {
         value={props.value}
         onBlur={props.onBlur}
         onChange={props.onChange}
+        onKeyPress={props.onEnterKeyPress}
         className={clsx(["p-0 w-full h-6 text-base input input-ghost", caretColor])}
       />
     </div>

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { VFC } from "react";
+import type { KeyboardEvent, VFC } from "react";
 import { useRef, useState } from "react";
 import { useRecoilState } from "recoil";
 
@@ -29,17 +29,12 @@ const checkedTextTheme = (categoryColor: string) => {
 export const TodoList: VFC<TodoListProps> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputDisplayState, setInputDisplayState] = useState(false);
-
-  const handleClickAddTodoButton = async () => {
-    await setInputDisplayState(true);
-    inputRef.current && inputRef.current.focus();
-  };
+  const [inputValueState, setInputValueState] = useState("");
 
   const [createTodo] = useCreateTodoMutation();
   const [todoList, setTodoList] = useRecoilState<TodoListState>(todoListState);
-  const [todoInputValueState, setTodoInputValueState] = useState("");
 
-  const handleInputBlur = async () => {
+  const createTodoAndSetTodoList = async () => {
     if (!inputRef.current) return;
     if (!inputRef.current.value) {
       setInputDisplayState(false);
@@ -80,13 +75,28 @@ export const TodoList: VFC<TodoListProps> = (props) => {
     } catch (e) {
       console.error(`${e}: Todoの作成に失敗しました`);
     }
-    setInputDisplayState(false);
-    setTodoInputValueState("");
+  };
+
+  const handleClickAddTodoButton = async () => {
+    await setInputDisplayState(true);
+    inputRef.current && inputRef.current.focus();
   };
 
   const handleInputValueChange = () => {
     if (!inputRef.current) return;
-    setTodoInputValueState(inputRef.current.value);
+    setInputValueState(inputRef.current.value);
+  };
+
+  const handleInputBlur = async () => {
+    await createTodoAndSetTodoList();
+    setInputDisplayState(false);
+    setInputValueState("");
+  };
+
+  const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    await createTodoAndSetTodoList();
+    setInputValueState("");
   };
 
   return (
@@ -111,9 +121,10 @@ export const TodoList: VFC<TodoListProps> = (props) => {
         <AddTodoButton onClick={handleClickAddTodoButton} className={inputDisplayState ? "hidden" : ""} />
         <TodoInput
           ref={inputRef}
-          value={todoInputValueState}
+          value={inputValueState}
           onBlur={handleInputBlur}
           onChange={handleInputValueChange}
+          onEnterKeyPress={handleInputEnterKeyPress}
           categoryColor={props.categoryObject.color}
           className={inputDisplayState ? "" : "hidden"}
         />
