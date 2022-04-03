@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
