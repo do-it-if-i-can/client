@@ -8,7 +8,9 @@ export type Todo = Pick<GqlTodo, "id" | "category" | "title" | "done" | "priorit
 
 type TodoInputProps = {
   categoryColor: string;
+  value: string;
   onBlur: () => void;
+  onChange: () => void;
   className?: string;
 };
 
@@ -34,7 +36,9 @@ export const TodoInput: TodoInput = forwardRef((props, ref) => {
       <input
         ref={ref}
         type="text"
+        value={props.value}
         onBlur={props.onBlur}
+        onChange={props.onChange}
         className={clsx(["p-0 w-full h-6 text-base input input-ghost", caretColor])}
       />
     </div>

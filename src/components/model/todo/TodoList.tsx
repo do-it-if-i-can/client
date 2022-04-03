@@ -1,15 +1,20 @@
 import clsx from "clsx";
 import type { VFC } from "react";
 import { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 
 import type { Todo } from "~/components/model/todo/TodoListItem";
-import type { GetTodosByUserQuery } from "$/gql";
+import type { TodoListState } from "~/globalStates/atoms/todoListState";
+import { todoListState } from "~/globalStates/atoms/todoListState";
+import type { Category, GetTodosByUserQuery } from "$/gql";
+import { useCreateTodoMutation } from "$/gql";
 
 import { AddTodoButton, TodoListItem } from ".";
 import { TodoInput } from "./TodoInput";
 
 type TodoListProps = {
-  category: {
+  categoryObject: {
+    category: Category;
     label: string;
     color: string;
   };
@@ -22,22 +27,72 @@ const checkedTextTheme = (categoryColor: string) => {
 };
 
 export const TodoList: VFC<TodoListProps> = (props) => {
-  const todoInputRef = useRef<HTMLInputElement>(null);
-  const [todoInputDisplayState, setTodoInputDisplayState] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [inputDisplayState, setInputDisplayState] = useState(false);
 
   const handleClickAddTodoButton = async () => {
-    await setTodoInputDisplayState(true);
-    todoInputRef.current && todoInputRef.current.focus();
+    await setInputDisplayState(true);
+    inputRef.current && inputRef.current.focus();
   };
 
-  const handleBlurTodoInput = () => {
-    setTodoInputDisplayState(false);
+  const [createTodo] = useCreateTodoMutation();
+  const [todoList, setTodoList] = useRecoilState<TodoListState>(todoListState);
+  const [todoInputValueState, setTodoInputValueState] = useState("");
+
+  const handleInputBlur = async () => {
+    if (!inputRef.current) return;
+    if (!inputRef.current.value) {
+      setInputDisplayState(false);
+      return;
+    }
+
+    try {
+      const { data } = await createTodo({
+        variables: {
+          input: {
+            category: props.categoryObject.category,
+            title: inputRef.current.value,
+            // FIXME: userIdをログイン中のユーザーのIDにする
+            userId: "1",
+          },
+        },
+      });
+      if (data && data.createTodo) {
+        // FIXME: refetch()に置き換える
+        const todoIds = todoList.filter((t) => t).map((t) => t && t.id) as number[];
+        const latestId = Math.max(...todoIds);
+        const newTodo = {
+          id: latestId + 1,
+          category: props.categoryObject.category,
+          title: inputRef.current.value,
+          done: false,
+          priority: 1,
+        };
+        const newTodoList = todoList.map((t) => {
+          if (t && t.category === props.categoryObject.category) {
+            return { ...t, priority: t.priority + 1 };
+          }
+          return t;
+        });
+
+        setTodoList([...newTodoList, newTodo]);
+      }
+    } catch (e) {
+      console.error(`${e}: Todoの作成に失敗しました`);
+    }
+    setInputDisplayState(false);
+    setTodoInputValueState("");
+  };
+
+  const handleInputValueChange = () => {
+    if (!inputRef.current) return;
+    setTodoInputValueState(inputRef.current.value);
   };
 
   return (
     <div className="py-6 md:flex-1 md:px-2">
-      <div className={clsx(["mb-6 w-full text-xl font-bold", checkedTextTheme(props.category.color)])}>
-        {props.category.label}
+      <div className={clsx(["mb-6 w-full text-xl font-bold", checkedTextTheme(props.categoryObject.color)])}>
+        {props.categoryObject.label}
       </div>
 
       <div className="flex flex-col space-y-4">
@@ -47,18 +102,20 @@ export const TodoList: VFC<TodoListProps> = (props) => {
               <TodoListItem
                 key={todo.id}
                 todo={todo}
-                categoryColor={props.category.color}
+                categoryColor={props.categoryObject.color}
                 onDoneChange={props.onDoneChange}
               />
             )
           );
         })}
-        <AddTodoButton onClick={handleClickAddTodoButton} className={todoInputDisplayState ? "hidden" : ""} />
+        <AddTodoButton onClick={handleClickAddTodoButton} className={inputDisplayState ? "hidden" : ""} />
         <TodoInput
-          ref={todoInputRef}
-          onBlur={handleBlurTodoInput}
-          categoryColor={props.category.color}
-          className={todoInputDisplayState ? "" : "hidden"}
+          ref={inputRef}
+          value={todoInputValueState}
+          onBlur={handleInputBlur}
+          onChange={handleInputValueChange}
+          categoryColor={props.categoryObject.color}
+          className={inputDisplayState ? "" : "hidden"}
         />
       </div>
     </div>
