@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { ForwardRefExoticComponent, KeyboardEvent, RefAttributes } from "react";
+import type { KeyboardEvent } from "react";
 import { forwardRef } from "react";
 
 type TodoInputProps = {
@@ -10,8 +10,6 @@ type TodoInputProps = {
   onEnterKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
 };
 
-type TodoInput = ForwardRefExoticComponent<TodoInputProps & RefAttributes<HTMLInputElement>>;
-
 const checkedRadioBgTheme = (categoryColor: string) => {
   return `radio-${categoryColor}`;
 };
@@ -19,7 +17,7 @@ const caretTheme = (categoryColor: string) => {
   return `caret-${categoryColor}`;
 };
 
-export const TodoInput: TodoInput = forwardRef((props, ref) => {
+export const TodoInput = forwardRef<HTMLInputElement, TodoInputProps>((props, ref) => {
   const radioColor = checkedRadioBgTheme(props.categoryColor);
   const caretColor = caretTheme(props.categoryColor);
 
