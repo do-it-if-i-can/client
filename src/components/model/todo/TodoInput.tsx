@@ -2,10 +2,6 @@ import clsx from "clsx";
 import type { ForwardRefExoticComponent, KeyboardEvent, RefAttributes } from "react";
 import { forwardRef } from "react";
 
-import type { Todo as GqlTodo } from "$/gql";
-
-export type Todo = Pick<GqlTodo, "id" | "category" | "title" | "done" | "priority">;
-
 type TodoInputProps = {
   categoryColor: string;
   value: string;
