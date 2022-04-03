@@ -10,7 +10,7 @@ import type { Category, GetTodosByUserQuery } from "$/gql";
 import { useCreateTodoMutation } from "$/gql";
 
 import { AddTodoButton, TodoListItem } from ".";
-import { TodoInput } from "./TodoInput";
+import { TodoInput } from ".";
 
 type TodoListProps = {
   categoryObject: {
