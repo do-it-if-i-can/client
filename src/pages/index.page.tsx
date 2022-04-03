@@ -12,21 +12,25 @@ import { todoListState } from "~/globalStates/atoms/todoListState";
 import { categorizedTodoListState } from "~/globalStates/selectors/categorizedTodoListState";
 import { Category, useGetTodosByUserQuery, useUpdateTodoDoneMutation } from "$/gql";
 
-const categories: {
+const categoryObjects: {
   [category: string]: {
+    category: Category;
     label: string;
     color: string;
   };
 } = {
   today: {
+    category: Category.TODAY,
     label: "今日する",
     color: "primary",
   },
   tomorrow: {
+    category: Category.TOMORROW,
     label: "明日する",
     color: "secondary",
   },
   someday: {
+    category: Category.SOMEDAY,
     label: "今度する",
     color: "accent",
   },
@@ -83,17 +87,17 @@ const Home: NextPage = () => {
       <LayoutErrorBoundary>
         <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
           <TodoList
-            category={categories.today}
+            categoryObject={categoryObjects.today}
             todoList={useCategorizedTodoList(Category.TODAY)}
             onDoneChange={handleDoneChange}
           />
           <TodoList
-            category={categories.tomorrow}
+            categoryObject={categoryObjects.tomorrow}
             todoList={useCategorizedTodoList(Category.TOMORROW)}
             onDoneChange={handleDoneChange}
           />
           <TodoList
-            category={categories.someday}
+            categoryObject={categoryObjects.someday}
             todoList={useCategorizedTodoList(Category.SOMEDAY)}
             onDoneChange={handleDoneChange}
           />

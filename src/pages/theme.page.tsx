@@ -89,6 +89,14 @@ const Theme: NextPage = () => {
 
       <input type="input" className="w-full input input-bordered input-primary" placeholder="名前を変更" />
 
+      <input type="input" className="w-full input input-bordered input-primary caret-primary" placeholder="今日する" />
+      <input
+        type="input"
+        className="w-full input input-bordered input-secondary caret-secondary"
+        placeholder="明日する"
+      />
+      <input type="input" className="w-full input input-bordered input-accent caret-accent" placeholder="今度する" />
+
       <textarea
         name="tweetBody"
         className="textarea-primary"
