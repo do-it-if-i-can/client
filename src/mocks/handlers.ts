@@ -249,27 +249,10 @@ export const handlers = [
     );
   }),
 
-  graphql.mutation<Record<"createTodo", Todo>, MutationCreateTodoArgs>("createTodo", (req, res, ctx) => {
+  graphql.mutation<Record<"createTodo", boolean>, MutationCreateTodoArgs>("createTodo", (req, res, ctx) => {
     return res(
       ctx.data({
-        createTodo: {
-          category: Category.SOMEDAY,
-          createdAt: new Date(),
-          description: undefined,
-          done: false,
-          id: "1",
-          priority: 1,
-          title: "おかいもの",
-          updatedAt: new Date(),
-          user: {
-            id: "1",
-            userName: "miyasan",
-            displayName: "みやさん",
-            todos: [],
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-        },
+        createTodo: true,
       }),
     );
   }),
