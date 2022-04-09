@@ -47,7 +47,7 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
       <label
         title={tooltipText()}
         onClick={() => props.onLabelClick(props.todo)}
-        className={clsx(["flex-1 break-words line-clamp-4 md:line-clamp-none", labelColor])}
+        className={clsx(["flex-1 whitespace-pre-wrap break-words line-clamp-4 md:line-clamp-none", labelColor])}
       >
         {displayTitle()}
       </label>

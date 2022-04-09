@@ -132,6 +132,8 @@ export const TodoList: VFC<TodoListProps> = (props) => {
 
   const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLTextAreaElement>, todo?: Todo) => {
     if (e.key !== "Enter") return;
+    if (e.shiftKey) return;
+    e.preventDefault();
 
     if (todo) {
       await updateTodoAndSetTodoList(todo);
