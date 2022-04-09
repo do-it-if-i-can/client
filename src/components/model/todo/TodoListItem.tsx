@@ -10,6 +10,7 @@ type TodoListItemProps = {
   todo: Todo;
   categoryColor: string;
   onDoneChange: (todo: Todo) => void;
+  onLabelClick: (todo: Todo) => void;
 };
 
 const checkedRadioBgTheme = (categoryColor: string) => {
@@ -32,7 +33,10 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
         />
       </div>
 
-      <label className={clsx(["flex-1 break-words line-clamp-4 md:line-clamp-none", labelColor])}>
+      <label
+        onClick={() => props.onLabelClick(props.todo)}
+        className={clsx(["flex-1 break-words line-clamp-4 md:line-clamp-none", labelColor])}
+      >
         {props.todo.title}
       </label>
 
