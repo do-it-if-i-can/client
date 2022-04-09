@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import type { KeyboardEvent } from "react";
-import { forwardRef } from "react";
+import type { KeyboardEvent, MutableRefObject } from "react";
+import { forwardRef, useEffect } from "react";
 
 import type { Todo } from "~/components/model/todo/TodoListItem";
 
@@ -25,6 +25,12 @@ export const TodoInput = forwardRef<HTMLTextAreaElement, TodoInputProps>((props,
   const caretColor = caretTheme(props.categoryColor);
   const labelColor = props.todo?.done ? "text-base-300 line-through" : "";
 
+  useEffect(() => {
+    const textArea = (ref as MutableRefObject<HTMLTextAreaElement>).current;
+    textArea.style.height = "auto";
+    textArea.style.height = `${textArea.scrollHeight}px`;
+  }, [props.value]);
+
   return (
     <div className="group flex gap-2 items-start w-full cursor-pointer">
       <div className="flex-wrap">
@@ -38,7 +44,7 @@ export const TodoInput = forwardRef<HTMLTextAreaElement, TodoInputProps>((props,
         onChange={props.onChange}
         onBlur={() => props.onBlur(props.todo)}
         onKeyPress={(e) => props.onEnterKeyPress(e, props.todo)}
-        className={clsx(["p-0 w-full h-6 text-base bg-transparent outline-none resize-none", caretColor, labelColor])}
+        className={clsx(["p-0 w-full text-base bg-transparent outline-none resize-none", caretColor, labelColor])}
       />
     </div>
   );
