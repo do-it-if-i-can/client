@@ -1,3 +1,4 @@
+import { DndContext } from "@dnd-kit/core";
 import type { NextPage } from "next";
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -85,23 +86,25 @@ const Home: NextPage = () => {
   return (
     <Layout layout="main">
       <LayoutErrorBoundary>
-        <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
-          <TodoList
-            categoryObject={categoryObjects.today}
-            todoList={useCategorizedTodoList(Category.TODAY)}
-            onDoneChange={handleDoneChange}
-          />
-          <TodoList
-            categoryObject={categoryObjects.tomorrow}
-            todoList={useCategorizedTodoList(Category.TOMORROW)}
-            onDoneChange={handleDoneChange}
-          />
-          <TodoList
-            categoryObject={categoryObjects.someday}
-            todoList={useCategorizedTodoList(Category.SOMEDAY)}
-            onDoneChange={handleDoneChange}
-          />
-        </div>
+        <DndContext>
+          <div className="justify-between mx-auto w-full md:flex md:max-w-screen-xl">
+            <TodoList
+              categoryObject={categoryObjects.today}
+              todoList={useCategorizedTodoList(Category.TODAY)}
+              onDoneChange={handleDoneChange}
+            />
+            <TodoList
+              categoryObject={categoryObjects.tomorrow}
+              todoList={useCategorizedTodoList(Category.TOMORROW)}
+              onDoneChange={handleDoneChange}
+            />
+            <TodoList
+              categoryObject={categoryObjects.someday}
+              todoList={useCategorizedTodoList(Category.SOMEDAY)}
+              onDoneChange={handleDoneChange}
+            />
+          </div>
+        </DndContext>
       </LayoutErrorBoundary>
     </Layout>
   );
