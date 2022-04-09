@@ -30,6 +30,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputDisplayState, setInputDisplayState] = useState(false);
   const [inputValueState, setInputValueState] = useState("");
+  const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
 
   const [createTodo] = useCreateTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
@@ -81,7 +82,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   const updateTodoAndSetTodoList = async (todo: Todo) => {
     if (!inputRef.current) return;
     if (!inputRef.current.value) {
-      setBeingEditedTodo(null);
+      setEditingTodo(null);
       return;
     }
 
@@ -122,7 +123,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   const handleInputBlur = async (todo?: Todo) => {
     if (todo) {
       await updateTodoAndSetTodoList(todo);
-      setBeingEditedTodo(null);
+      setEditingTodo(null);
     } else {
       await createTodoAndSetTodoList();
       setInputDisplayState(false);
@@ -137,17 +138,15 @@ export const TodoList: VFC<TodoListProps> = (props) => {
 
     if (todo) {
       await updateTodoAndSetTodoList(todo);
-      setBeingEditedTodo(null);
+      setEditingTodo(null);
     } else {
       await createTodoAndSetTodoList();
     }
     setInputValueState("");
   };
 
-  const [beingEditedTodo, setBeingEditedTodo] = useState<Todo | null>(null);
-
   const handleLabelClick = async (todo: Todo) => {
-    await setBeingEditedTodo(todo);
+    await setEditingTodo(todo);
     inputRef.current && inputRef.current.focus();
     setInputValueState(todo.title);
   };
@@ -162,7 +161,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
         {props.todoList.map((todo) => {
           return (
             todo &&
-            (beingEditedTodo && todo === beingEditedTodo ? (
+            (editingTodo && todo === editingTodo ? (
               <TodoInput
                 key={todo.id}
                 ref={inputRef}
