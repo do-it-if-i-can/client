@@ -1,14 +1,13 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
-import { WithAuth } from "~/components/functional/WithAuth";
 import { Layout } from "~/components/ui/Layout/Layout";
 
 const PrivacyPage: NextPage = () => {
   return (
     <Layout centerTitle="プライバシーポリシー" layout="setting">
       <LayoutErrorBoundary>
-        <div className="px-4 pb-20 prose md:px-0 dark:prose-invert">
+        <div className="px-4 pb-20 prose dark:prose-invert md:px-0">
           <p>
             合同会社Qin（以下「弊社」とします）は、個人情報が人格尊重の理念の下に慎重に取扱われるべきものであることに鑑み、個人情報を保護することが弊社の事業活動の基本であり、社会的責務であると認識し、以下の方針に基づき個人情報の保護に努めます。
           </p>
@@ -67,4 +66,4 @@ const PrivacyPage: NextPage = () => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default WithAuth(PrivacyPage);
+export default PrivacyPage;
