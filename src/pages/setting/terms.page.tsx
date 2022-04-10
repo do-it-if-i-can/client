@@ -1,14 +1,13 @@
 import type { NextPage } from "next";
 
 import { LayoutErrorBoundary } from "~/components/functional/LayoutErrorBoundary";
-import { WithAuth } from "~/components/functional/WithAuth";
 import { Layout } from "~/components/ui/Layout/Layout";
 
 const TermsPage: NextPage = () => {
   return (
     <Layout centerTitle="利用規約" layout="setting">
       <LayoutErrorBoundary>
-        <div className="px-4 pb-20 prose md:px-0 dark:prose-invert">
+        <div className="px-4 pb-20 prose dark:prose-invert md:px-0">
           <p>
             本規約は、合同会社Qin（以下「弊社」とします）が提供するブログサービス『Qin
             Todo』（以下「本サービス」とします）について、その利用者との間に適用されるものです。
@@ -310,4 +309,4 @@ const TermsPage: NextPage = () => {
 };
 
 // eslint-disable-next-line import/no-default-export
-export default WithAuth(TermsPage);
+export default TermsPage;
