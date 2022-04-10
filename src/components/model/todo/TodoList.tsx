@@ -7,7 +7,7 @@ import type { Todo } from "~/components/model/todo/TodoListItem";
 import type { TodoListState } from "~/globalStates/atoms/todoListState";
 import { todoListState } from "~/globalStates/atoms/todoListState";
 import type { Category, GetTodosByUserQuery } from "$/gql";
-import { useCreateTodoMutation } from "$/gql";
+import { useCreateTodoMutation, useUpdateTodoMutation } from "$/gql";
 
 import { AddTodoButton, TodoListItem } from ".";
 import { TodoInput } from ".";
@@ -27,11 +27,13 @@ const checkedTextTheme = (categoryColor: string) => {
 };
 
 export const TodoList: VFC<TodoListProps> = (props) => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
   const [inputDisplayState, setInputDisplayState] = useState(false);
   const [inputValueState, setInputValueState] = useState("");
+  const [editingTodo, setEditingTodo] = useState<Todo | null>(null);
 
   const [createTodo] = useCreateTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
   const [todoList, setTodoList] = useRecoilState<TodoListState>(todoListState);
 
   const createTodoAndSetTodoList = async () => {
@@ -77,6 +79,37 @@ export const TodoList: VFC<TodoListProps> = (props) => {
     }
   };
 
+  const updateTodoAndSetTodoList = async (todo: Todo) => {
+    if (!inputRef.current) return;
+    if (!inputRef.current.value) {
+      setEditingTodo(null);
+      return;
+    }
+
+    try {
+      const { data } = await updateTodo({
+        variables: {
+          input: {
+            title: inputRef.current.value,
+            todoId: todo.id,
+          },
+        },
+      });
+      if (data && data.updateTodo) {
+        // FIXME: refetch()に置き換える
+        const newTodo = {
+          ...todo,
+          title: inputRef.current.value,
+        };
+        const newTodoList = todoList.map((t) => (t && t.id === todo.id ? newTodo : t));
+
+        setTodoList(newTodoList);
+      }
+    } catch (e) {
+      console.error(`${e}: Todoの更新に失敗しました`);
+    }
+  };
+
   const handleClickAddTodoButton = async () => {
     await setInputDisplayState(true);
     inputRef.current && inputRef.current.focus();
@@ -87,16 +120,35 @@ export const TodoList: VFC<TodoListProps> = (props) => {
     setInputValueState(inputRef.current.value);
   };
 
-  const handleInputBlur = async () => {
-    await createTodoAndSetTodoList();
-    setInputDisplayState(false);
+  const handleInputBlur = async (todo?: Todo) => {
+    if (todo) {
+      await updateTodoAndSetTodoList(todo);
+      setEditingTodo(null);
+    } else {
+      await createTodoAndSetTodoList();
+      setInputDisplayState(false);
+    }
     setInputValueState("");
   };
 
-  const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleInputEnterKeyPress = async (e: KeyboardEvent<HTMLTextAreaElement>, todo?: Todo) => {
     if (e.key !== "Enter") return;
-    await createTodoAndSetTodoList();
+    if (e.shiftKey) return;
+    e.preventDefault();
+
+    if (todo) {
+      await updateTodoAndSetTodoList(todo);
+      setEditingTodo(null);
+    } else {
+      await createTodoAndSetTodoList();
+    }
     setInputValueState("");
+  };
+
+  const handleLabelClick = async (todo: Todo) => {
+    await setEditingTodo(todo);
+    inputRef.current && inputRef.current.focus();
+    setInputValueState(todo.title);
   };
 
   return (
@@ -108,22 +160,35 @@ export const TodoList: VFC<TodoListProps> = (props) => {
       <div className="flex flex-col space-y-4">
         {props.todoList.map((todo) => {
           return (
-            todo && (
+            todo &&
+            (editingTodo && todo === editingTodo ? (
+              <TodoInput
+                key={todo.id}
+                ref={inputRef}
+                value={inputValueState}
+                todo={todo}
+                onChange={handleInputValueChange}
+                onBlur={handleInputBlur}
+                onEnterKeyPress={handleInputEnterKeyPress}
+                categoryColor={props.categoryObject.color}
+              />
+            ) : (
               <TodoListItem
                 key={todo.id}
                 todo={todo}
                 categoryColor={props.categoryObject.color}
                 onDoneChange={props.onDoneChange}
+                onLabelClick={handleLabelClick}
               />
-            )
+            ))
           );
         })}
         {inputDisplayState ? (
           <TodoInput
             ref={inputRef}
             value={inputValueState}
-            onBlur={handleInputBlur}
             onChange={handleInputValueChange}
+            onBlur={handleInputBlur}
             onEnterKeyPress={handleInputEnterKeyPress}
             categoryColor={props.categoryObject.color}
           />

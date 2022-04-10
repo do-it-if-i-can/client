@@ -1,13 +1,16 @@
 import clsx from "clsx";
-import type { KeyboardEvent } from "react";
-import { forwardRef } from "react";
+import type { KeyboardEvent, MutableRefObject } from "react";
+import { forwardRef, useEffect } from "react";
+
+import type { Todo } from "~/components/model/todo/TodoListItem";
 
 type TodoInputProps = {
-  categoryColor: string;
   value: string;
-  onBlur: () => void;
+  todo?: Todo;
   onChange: () => void;
-  onEnterKeyPress: (e: KeyboardEvent<HTMLInputElement>) => void;
+  onBlur: (todo?: Todo) => void;
+  onEnterKeyPress: (event: KeyboardEvent<HTMLTextAreaElement>, todo?: Todo) => void;
+  categoryColor: string;
 };
 
 const checkedRadioBgTheme = (categoryColor: string) => {
@@ -17,24 +20,31 @@ const caretTheme = (categoryColor: string) => {
   return `caret-${categoryColor}`;
 };
 
-export const TodoInput = forwardRef<HTMLInputElement, TodoInputProps>((props, ref) => {
+export const TodoInput = forwardRef<HTMLTextAreaElement, TodoInputProps>((props, ref) => {
   const radioColor = checkedRadioBgTheme(props.categoryColor);
   const caretColor = caretTheme(props.categoryColor);
+  const labelColor = props.todo?.done ? "text-base-300 line-through" : "";
+
+  useEffect(() => {
+    const textArea = (ref as MutableRefObject<HTMLTextAreaElement>).current;
+    textArea.style.height = "auto";
+    textArea.style.height = `${textArea.scrollHeight}px`;
+  }, [props.value]);
 
   return (
     <div className="group flex gap-2 items-start w-full cursor-pointer">
       <div className="flex-wrap">
-        <input type="radio" className={clsx(["radio", radioColor])} readOnly />
+        <input type="radio" className={clsx(["radio", radioColor])} checked={props.todo?.done} readOnly />
       </div>
 
-      <input
+      <textarea
         ref={ref}
-        type="text"
         value={props.value}
-        onBlur={props.onBlur}
+        rows={1}
         onChange={props.onChange}
-        onKeyPress={props.onEnterKeyPress}
-        className={clsx(["p-0 w-full h-6 text-base input input-ghost", caretColor])}
+        onBlur={() => props.onBlur(props.todo)}
+        onKeyPress={(e) => props.onEnterKeyPress(e, props.todo)}
+        className={clsx(["p-0 w-full text-base bg-transparent outline-none resize-none", caretColor, labelColor])}
       />
     </div>
   );

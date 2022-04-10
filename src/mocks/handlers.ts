@@ -4,6 +4,7 @@ import type {
   MutationCopyTodoArgs,
   MutationCreateTodoArgs,
   MutationDeleteTodoArgs,
+  MutationUpdateTodoArgs,
   MutationUpdateTodoDoneArgs,
   QueryGetTodosByCategoryArgs,
   QueryGetTodosByUserArgs,
@@ -253,6 +254,14 @@ export const handlers = [
     return res(
       ctx.data({
         createTodo: true,
+      }),
+    );
+  }),
+
+  graphql.mutation<Record<"updateTodo", boolean>, MutationUpdateTodoArgs>("updateTodo", (req, res, ctx) => {
+    return res(
+      ctx.data({
+        updateTodo: true,
       }),
     );
   }),

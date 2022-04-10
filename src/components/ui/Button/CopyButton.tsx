@@ -29,18 +29,18 @@ export const CopyButton: VFC<CopyButtonProps> = ({ className, todo }) => {
         // FIXME: refetch()に置き換える
         const todoIds = todoList.filter((t) => t).map((t) => t && t.id) as number[];
         const latestId = Math.max(...todoIds);
-        const newTodo = {
-          ...todo,
-          id: latestId + 1,
-          priority: todo.priority - 1,
-        };
 
         const newTodoList = todoList.map((t) => {
-          if (t && t.category === todo.category && t.priority < todo.priority) {
-            return { ...t, priority: t.priority - 1 };
+          if (t && t.category === todo.category && t.priority >= todo.priority) {
+            return { ...t, priority: t.priority + 1 };
           }
           return t;
         });
+
+        const newTodo = {
+          ...todo,
+          id: latestId + 1,
+        };
 
         setTodoList([...newTodoList, newTodo]);
       }
