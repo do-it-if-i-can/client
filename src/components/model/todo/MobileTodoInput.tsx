@@ -12,7 +12,7 @@ export const MobileTodoInput: FC = () => {
   const handleBlur = useCallback(() => setIsFocused(false), []);
 
   return (
-    <div className="block fixed bottom-0 z-50 p-2 w-full md:hidden bg-base-200">
+    <div className="block fixed bottom-0 z-50 p-2 w-full shadow md:hidden bg-base-100">
       <input
         className="w-full rounded-2xl input input-primary input-sm"
         type="text"
