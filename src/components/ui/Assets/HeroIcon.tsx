@@ -46,7 +46,7 @@ export const PlusIcon: VFC<Props> = ({ className, ...otherProps }) => {
 };
 
 export const UserCircleIcon: VFC<Props> = ({ className, ...otherProps }) => {
-  return <UserCircle className={clsx([defaultStyle, className])} {...otherProps} />;
+  return <UserCircle className={className} {...otherProps} />;
 };
 
 export const CloseIcon: VFC<Props> = ({ className, ...otherProps }) => {
