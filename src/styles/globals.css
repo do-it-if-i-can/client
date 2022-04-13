@@ -24,7 +24,11 @@ ul {
 }
 
 .btn-sm {
-  @apply h-10;
+  @apply text-xs h-9;
+}
+
+.input-sm {
+  @apply text-xs h-9;
 }
 
 .radio {
