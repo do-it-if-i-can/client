@@ -1,9 +1,10 @@
 import clsx from "clsx";
 import type { KeyboardEvent, VFC } from "react";
 import { useRef, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import type { Todo } from "~/components/model/todo/TodoListItem";
+import { editTodoState } from "~/globalStates/atoms/editTodoState";
 import type { TodoListState } from "~/globalStates/atoms/todoListState";
 import { todoListState } from "~/globalStates/atoms/todoListState";
 import type { Category, GetTodosByUserQuery } from "$/gql";
@@ -35,6 +36,7 @@ export const TodoList: VFC<TodoListProps> = (props) => {
   const [createTodo] = useCreateTodoMutation();
   const [updateTodo] = useUpdateTodoMutation();
   const [todoList, setTodoList] = useRecoilState<TodoListState>(todoListState);
+  const setEditTodoStateInfo = useSetRecoilState(editTodoState);
 
   const createTodoAndSetTodoList = async () => {
     if (!inputRef.current) return;
@@ -149,6 +151,12 @@ export const TodoList: VFC<TodoListProps> = (props) => {
     await setEditingTodo(todo);
     inputRef.current && inputRef.current.focus();
     setInputValueState(todo.title);
+    setEditTodoStateInfo({
+      isFocused: true,
+      id: todo.id,
+      value: todo.title,
+      category: todo.category,
+    });
   };
 
   return (
