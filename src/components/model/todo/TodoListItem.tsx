@@ -3,7 +3,7 @@ import Swipeout from "rc-swipeout";
 import type { VFC } from "react";
 
 import { CopyButton, DeleteButton } from "~/components/ui/Button";
-import { useDeleteTodo } from "~/hooks";
+import { useCopyTodo, useDeleteTodo } from "~/hooks";
 import type { Todo as GqlTodo } from "$/gql";
 
 export type Todo = Pick<GqlTodo, "id" | "category" | "title" | "done" | "priority">;
@@ -35,11 +35,18 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
       : props.todo.title;
   };
 
+  const handleCopyTodo = useCopyTodo(props.todo);
   const handleDeleteTodo = useDeleteTodo(props.todo.id);
 
   return (
     <Swipeout
       right={[
+        {
+          text: "複製",
+          onPress: handleCopyTodo,
+          style: { backgroundColor: "orange", color: "white" },
+          className: "custom-class-2 text-sm sm:hidden",
+        },
         {
           text: "削除",
           onPress: handleDeleteTodo,
@@ -47,6 +54,7 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
           className: "custom-class-2 text-sm sm:hidden",
         },
       ]}
+      autoClose={true}
     >
       <div className="group flex gap-2 items-start w-full cursor-pointer">
         <div className="flex-wrap">
