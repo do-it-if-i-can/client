@@ -1,4 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
+import clsx from "clsx";
 import type { VFC } from "react";
 import { Fragment } from "react";
 
@@ -12,6 +13,8 @@ type ModalProps = {
 };
 
 export const Modal: VFC<ModalProps> = (props) => {
+  const transformStyle = "transform";
+
   return (
     <Transition appear show={props.isOpen} as={Fragment}>
       <Dialog as="div" className="overflow-y-auto fixed inset-0 z-10" onClose={props.onClose}>
@@ -41,7 +44,12 @@ export const Modal: VFC<ModalProps> = (props) => {
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <div className="inline-block overflow-hidden p-6 my-8 w-full max-w-md text-left align-middle bg-white rounded-2xl shadow-xl transition-all">
+            <div
+              className={clsx([
+                "inline-block overflow-hidden p-6 my-8 w-full max-w-md text-left align-middle bg-white rounded-2xl shadow-xl transition-all",
+                transformStyle,
+              ])}
+            >
               <Dialog.Title as="h3" className="text-lg font-bold leading-6 text-gray-900">
                 {props.title}
               </Dialog.Title>
