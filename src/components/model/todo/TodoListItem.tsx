@@ -1,10 +1,13 @@
 import clsx from "clsx";
+import Swipeout from "rc-swipeout";
 import type { VFC } from "react";
 
 import { CopyButton, DeleteButton } from "~/components/ui/Button";
+import { useDeleteTodo } from "~/hooks";
 import type { Todo as GqlTodo } from "$/gql";
 
 export type Todo = Pick<GqlTodo, "id" | "category" | "title" | "done" | "priority">;
+import "rc-swipeout/assets/index.css";
 
 type TodoListItemProps = {
   todo: Todo;
@@ -32,30 +35,42 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
       : props.todo.title;
   };
 
+  const handleDeleteTodo = useDeleteTodo(props.todo.id);
+
   return (
-    <div className="group flex gap-2 items-start w-full cursor-pointer">
-      <div className="flex-wrap">
-        <input
-          type="radio"
-          className={clsx(["radio", radioColor])}
-          checked={props.todo.done}
-          onClick={() => props.onDoneChange(props.todo)}
-          readOnly
-        />
-      </div>
+    <Swipeout
+      right={[
+        {
+          text: "削除",
+          onPress: handleDeleteTodo,
+          style: { backgroundColor: "red", color: "white" },
+          className: "custom-class-2 text-sm sm:hidden",
+        },
+      ]}
+    >
+      <div className="group flex gap-2 items-start w-full cursor-pointer">
+        <div className="flex-wrap">
+          <input
+            type="radio"
+            className={clsx(["radio", radioColor])}
+            checked={props.todo.done}
+            onClick={() => props.onDoneChange(props.todo)}
+            readOnly
+          />
+        </div>
+        <label
+          title={tooltipText()}
+          onClick={() => props.onLabelClick(props.todo)}
+          className={clsx(["flex-1 whitespace-pre-wrap break-words line-clamp-4 md:line-clamp-none", labelColor])}
+        >
+          {displayTitle()}
+        </label>
 
-      <label
-        title={tooltipText()}
-        onClick={() => props.onLabelClick(props.todo)}
-        className={clsx(["flex-1 whitespace-pre-wrap break-words line-clamp-4 md:line-clamp-none", labelColor])}
-      >
-        {displayTitle()}
-      </label>
-
-      <div className="flex flex-wrap gap-1 opacity-0 group-hover:opacity-100 md:gap-2 lg:gap-3">
-        <CopyButton todo={props.todo} />
-        <DeleteButton todoId={props.todo.id} />
+        <div className="flex flex-wrap gap-1 opacity-0 group-hover:opacity-100 md:gap-2 lg:gap-3">
+          <CopyButton todo={props.todo} />
+          <DeleteButton todoId={props.todo.id} />
+        </div>
       </div>
-    </div>
+    </Swipeout>
   );
 };
