@@ -10,21 +10,12 @@ import { Layout } from "~/components/ui/Layout/Layout";
 import type { SectionListDataType } from "~/components/ui/Layout/SectionList";
 import { SectionList } from "~/components/ui/Layout/SectionList";
 import { Modal } from "~/components/ui/Modal/Modal";
-import { useLogoutModal } from "~/hooks";
+import { useAccountDeleteModal, useLogoutModal } from "~/hooks";
 
 const ThemingAppleIcon: VFC = () => {
   const { resolvedTheme } = useTheme();
   const color = ["os", "light"].includes(resolvedTheme) ? "#fff" : "#000";
   return <AppleIcon fill={color} />;
-};
-
-const AccountDeleteButton: VFC = () => {
-  const handleAccountDelete = () => alert("アカウントを削除しました");
-  return (
-    <button className="font-bold text-error" onClick={handleAccountDelete}>
-      アカウント削除
-    </button>
-  );
 };
 
 const GoogleLinkButton: VFC = () => {
@@ -47,11 +38,21 @@ const AppleLinkButton: VFC = () => {
 
 const AccountPage: NextPage = () => {
   const { isLogoutModalOpen, handleLogoutModalOpen, handleLogoutModalClose, handleLogout } = useLogoutModal();
+  const { isAccountDeleteModalOpen, handleAccountDeleteModalOpen, handleAccountDeleteModalClose, handleAccountDelete } =
+    useAccountDeleteModal();
 
   const LogoutButton: VFC = () => {
     return (
       <button className="font-bold text-error" onClick={handleLogoutModalOpen}>
         ログアウト
+      </button>
+    );
+  };
+
+  const AccountDeleteButton: VFC = () => {
+    return (
+      <button className="font-bold text-error" onClick={handleAccountDeleteModalOpen}>
+        アカウント削除
       </button>
     );
   };
@@ -102,6 +103,14 @@ const AccountPage: NextPage = () => {
           description={"ログアウトしてよろしいですか？"}
           actionButtonLabel={"ログアウト"}
           onActionButtonClick={handleLogout}
+        />
+        <Modal
+          isOpen={isAccountDeleteModalOpen}
+          onClose={handleAccountDeleteModalClose}
+          title={"アカウントの削除"}
+          description={"アカウントを完全に削除してよろしいですか？"}
+          actionButtonLabel={"削除する"}
+          onActionButtonClick={handleAccountDelete}
         />
       </LayoutErrorBoundary>
     </Layout>
