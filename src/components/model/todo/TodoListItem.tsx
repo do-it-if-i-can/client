@@ -44,14 +44,12 @@ export const TodoListItem: VFC<TodoListItemProps> = (props) => {
         {
           text: "複製",
           onPress: handleCopyTodo,
-          style: { backgroundColor: "orange", color: "white" },
-          className: "custom-class-2 text-sm sm:hidden",
+          className: "custom-class-2 text-sm sm:hidden bg-secondary text-white",
         },
         {
           text: "削除",
           onPress: handleDeleteTodo,
-          style: { backgroundColor: "red", color: "white" },
-          className: "custom-class-2 text-sm sm:hidden",
+          className: "custom-class-2 text-sm sm:hidden bg-primary text-white",
         },
       ]}
       autoClose={true}
