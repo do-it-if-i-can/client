@@ -12,7 +12,7 @@ import { currentUserState } from "~/globalStates/atoms/currentUserState";
 const ProfilePage: NextPage = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState);
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState(currentUser.avatar || "/avatar_dummy.svg");
   const [displayName, setDisplayName] = useState(currentUser.displayName);
 
   const handleChangeAvatar = (event: ChangeEvent<HTMLInputElement>) => {
@@ -36,8 +36,6 @@ const ProfilePage: NextPage = () => {
 
   const handleClickSaveButton = () => {
     setCurrentUser({ avatar, displayName });
-    localStorage.setItem("avatar", avatar as string);
-    localStorage.setItem("displayName", displayName);
     alert("プロフィールを保存しました。");
   };
 
