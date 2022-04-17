@@ -1,22 +1,20 @@
 import Image from "next/image";
 import type { VFC } from "react";
+import { useRecoilValue } from "recoil";
 
 import { UserCircleIcon } from "~/components/ui/Assets/HeroIcon";
+import { currentUserState } from "~/globalStates/atoms/currentUserState";
 
-type AvatarProps = {
-  src?: string;
-  alt?: string;
-  className?: string;
-};
+export const Avatar: VFC = () => {
+  const currentUser = useRecoilValue(currentUserState);
 
-export const Avatar: VFC<AvatarProps> = (props) => {
   return (
-    <div className={props.className}>
-      {props.src ? (
-        <Image src={props.src} alt={props.alt} width={36} height={36} />
+    <>
+      {currentUser.avatar ? (
+        <Image src={currentUser.avatar} alt="ユーザーのアイコン" width={36} height={36} className="rounded-full" />
       ) : (
         <UserCircleIcon className="w-9 h-9 text-base-300" />
       )}
-    </div>
+    </>
   );
 };

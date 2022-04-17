@@ -13,10 +13,10 @@ export const AvatarMenu: VFC = () => {
 
   return (
     <>
-      <Popover className="relative">
+      <Popover className="relative w-9 h-9">
         {({ open: _ }) => (
           <>
-            <Popover.Button className="rounded-full outline-primary">
+            <Popover.Button className="w-full h-full outline-primary">
               <Avatar />
             </Popover.Button>
 
